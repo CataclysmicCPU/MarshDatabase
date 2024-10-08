@@ -28,18 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadData));
             this.ReadSelector = new System.Windows.Forms.TabControl();
             this.Players_Tab = new System.Windows.Forms.TabPage();
             this.PlayersSeperator = new System.Windows.Forms.SplitContainer();
             this.PlayersSearchBox = new System.Windows.Forms.TextBox();
             this.PlayerViewSeperator = new System.Windows.Forms.SplitContainer();
+            this.NameSelect = new System.Windows.Forms.DataGridView();
             this.Claims_Tab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.marshDataSet = new MarshDatabase.MarshDataSet();
-            this.marshDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReadSelector.SuspendLayout();
             this.Players_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayersSeperator)).BeginInit();
@@ -49,9 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PlayerViewSeperator)).BeginInit();
             this.PlayerViewSeperator.Panel1.SuspendLayout();
             this.PlayerViewSeperator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.marshDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.marshDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // ReadSelector
@@ -101,6 +95,7 @@
             this.PlayersSearchBox.Name = "PlayersSearchBox";
             this.PlayersSearchBox.Size = new System.Drawing.Size(863, 22);
             this.PlayersSearchBox.TabIndex = 0;
+            this.PlayersSearchBox.TextChanged += new System.EventHandler(this.PlayersSearchBox_TextChanged);
             // 
             // PlayerViewSeperator
             // 
@@ -112,10 +107,26 @@
             // PlayerViewSeperator.Panel1
             // 
             this.PlayerViewSeperator.Panel1.AutoScroll = true;
-            this.PlayerViewSeperator.Panel1.Controls.Add(this.dataGridView1);
+            this.PlayerViewSeperator.Panel1.Controls.Add(this.NameSelect);
             this.PlayerViewSeperator.Size = new System.Drawing.Size(863, 516);
             this.PlayerViewSeperator.SplitterDistance = 129;
             this.PlayerViewSeperator.TabIndex = 0;
+            // 
+            // NameSelect
+            // 
+            this.NameSelect.AllowUserToAddRows = false;
+            this.NameSelect.AllowUserToDeleteRows = false;
+            this.NameSelect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.NameSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NameSelect.Location = new System.Drawing.Point(0, 0);
+            this.NameSelect.Name = "NameSelect";
+            this.NameSelect.ReadOnly = true;
+            this.NameSelect.RowHeadersVisible = false;
+            this.NameSelect.RowHeadersWidth = 51;
+            this.NameSelect.RowTemplate.Height = 24;
+            this.NameSelect.Size = new System.Drawing.Size(129, 516);
+            this.NameSelect.TabIndex = 0;
+            this.NameSelect.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NameSelect_CellContentClick);
             // 
             // Claims_Tab
             // 
@@ -127,45 +138,6 @@
             this.Claims_Tab.Text = "Claims";
             this.Claims_Tab.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.marshDataSetBindingSource;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(129, 516);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // marshDataSet
-            // 
-            this.marshDataSet.DataSetName = "MarshDataSet";
-            this.marshDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // marshDataSetBindingSource
-            // 
-            this.marshDataSetBindingSource.DataSource = this.marshDataSet;
-            this.marshDataSetBindingSource.Position = 0;
-            // 
             // ReadData
             // 
             this.ClientSize = new System.Drawing.Size(877, 580);
@@ -176,7 +148,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Marsh Database - Read Data";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.ReadData_Load);
             this.ReadSelector.ResumeLayout(false);
             this.Players_Tab.ResumeLayout(false);
             this.PlayersSeperator.Panel1.ResumeLayout(false);
@@ -187,9 +158,7 @@
             this.PlayerViewSeperator.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerViewSeperator)).EndInit();
             this.PlayerViewSeperator.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.marshDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.marshDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -208,8 +177,6 @@
         private System.Windows.Forms.SplitContainer PlayersSeperator;
         private System.Windows.Forms.TextBox PlayersSearchBox;
         private System.Windows.Forms.SplitContainer PlayerViewSeperator;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource marshDataSetBindingSource;
-        private MarshDataSet marshDataSet;
+        private System.Windows.Forms.DataGridView NameSelect;
     }
 }

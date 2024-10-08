@@ -158,36 +158,6 @@
     <Compile Include="BootScreen.Designer.cs">
       <DependentUpon>BootScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarshDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarshDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MarshDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarshDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MarshSQLDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarshSQLDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MarshSQLTables.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarshSQLTables.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Member.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Member.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="SQLMarshFullDataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLMarshFullDataset.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SystemFiles\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadData.cs">
@@ -216,61 +186,6 @@
     <EmbeddedResource Include="ReadData.resx">
       <DependentUpon>ReadData.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="MarshDataSet.xsc">
-      <DependentUpon>MarshDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MarshDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MarshDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MarshDataSet.xss">
-      <DependentUpon>MarshDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MarshDataSet1.xsc">
-      <DependentUpon>MarshDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="MarshDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MarshDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MarshDataSet1.xss">
-      <DependentUpon>MarshDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="MarshSQLDataSet.xsc">
-      <DependentUpon>MarshSQLDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MarshSQLDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MarshSQLDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MarshSQLDataSet.xss">
-      <DependentUpon>MarshSQLDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MarshSQLTables.xsc">
-      <DependentUpon>MarshSQLTables.xsd</DependentUpon>
-    </None>
-    <None Include="MarshSQLTables.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MarshSQLTables.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MarshSQLTables.xss">
-      <DependentUpon>MarshSQLTables.xsd</DependentUpon>
-    </None>
-    <None Include="Member.xsc">
-      <DependentUpon>Member.xsd</DependentUpon>
-    </None>
-    <None Include="Member.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Member.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Member.xss">
-      <DependentUpon>Member.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -281,17 +196,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SQLMarshFullDataset.xsc">
-      <DependentUpon>SQLMarshFullDataset.xsd</DependentUpon>
-    </None>
-    <None Include="SQLMarshFullDataset.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SQLMarshFullDataset.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SQLMarshFullDataset.xss">
-      <DependentUpon>SQLMarshFullDataset.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
