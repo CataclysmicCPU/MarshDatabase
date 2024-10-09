@@ -21,7 +21,7 @@ namespace MarshDatabase
             InitializeComponent();
             DarkModeCS DM = new DarkModeCS(this);
             DM.ApplyTheme(true);
-            string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password={haha this is why you can't build from source};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password=[hahanolol];MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             sqlConnection = new SqlConnection(connectionString);
 
             string ShowDataQuery = "SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member";
@@ -37,10 +37,14 @@ namespace MarshDatabase
 
             NameSelect.DataSource = nameSelect;
         }
-
-        private void PlayersSearchBox_TextChanged(object sender, EventArgs e)
+        private void NameSelect_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string searchNameQuery = $"SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member WHERE InGameName LIKE '%{PlayersSearchBox.Text}%' OR DiscordName LIKE '%{PlayersSearchBox.Text}%'";
+
+        }
+
+        private void ShowPlayerData(object sender, EventArgs e)
+        {
+            string searchNameQuery = $"SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member WHERE InGameName LIKE '%{PlayerSearchBox.Text}%' OR DiscordName LIKE '%{PlayerSearchBox.Text}%'";
             SqlCommand sqlSearchCommand = new SqlCommand(searchNameQuery, sqlConnection);
             SqlDataAdapter sqlSearchDataAdapter = new SqlDataAdapter(sqlSearchCommand);
             DataTable searchResults = new DataTable();
@@ -50,13 +54,6 @@ namespace MarshDatabase
             sqlConnection.Close();
 
             NameSelect.DataSource = searchResults;
-        }
-        private void NameSelect_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void ShowPlayerData() {
-
         }
     }
 }
