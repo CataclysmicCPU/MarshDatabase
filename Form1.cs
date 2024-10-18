@@ -1,5 +1,4 @@
-﻿using DarkModeForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,15 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MarshDatabase
-{
-    public partial class BootScreen : Form
-    {
-        public BootScreen()
-        {
+namespace MarshDatabase {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
-            DarkModeCS darkModeCS = new DarkModeCS(this);
-            darkModeCS.ApplyTheme(true);
         }
     }
 }
