@@ -1,39 +1,35 @@
-﻿namespace MarshDatabase {
-    partial class Form1 {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static MarshDatabase.Program;
+using static MarshDatabase.MarshDB;
+using System.Data;
+using System.Data.SqlClient;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+namespace MarshDatabase {
 
-        #region Windows Form Designer generated code
+    public interface IClaimView {
+        void ShowClaimData(object sender, EventArgs e);
+    }
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent() {
+    internal class ClaimView : TabPage, IClaimView {
+        public ClaimView(DataGridView ClaimSlectPass, TabControl ViewSelectorPass) {
+            this.ViewSwapper = ViewSelectorPass;
+            this.ClaimSelect = ClaimSlectPass;
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ClaimNameLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ClaimNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ClaimOwnerLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ClaimContentsLabel = new System.Windows.Forms.Label();
             this.ClaimDatesLabel = new System.Windows.Forms.Label();
             this.MainClaimLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.ClaimSizeLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.CordsDisplayLabel = new System.Windows.Forms.Label();
             this.ClaimCenterLabel = new System.Windows.Forms.Label();
@@ -62,15 +58,15 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.ClaimNameLabel);
             this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimNameLabel);
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.ClaimOwnerLabel);
             this.flowLayoutPanel1.Controls.Add(this.label4);
             this.flowLayoutPanel1.Controls.Add(this.ClaimContentsLabel);
             this.flowLayoutPanel1.Controls.Add(this.ClaimDatesLabel);
             this.flowLayoutPanel1.Controls.Add(this.MainClaimLabel);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimSizeLabel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -80,23 +76,23 @@
             // 
             // ClaimNameLabel
             // 
-            this.ClaimNameLabel.AutoSize = true;
-            this.ClaimNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimNameLabel.Location = new System.Drawing.Point(3, 0);
-            this.ClaimNameLabel.Name = "ClaimNameLabel";
-            this.ClaimNameLabel.Size = new System.Drawing.Size(123, 22);
-            this.ClaimNameLabel.TabIndex = 0;
-            this.ClaimNameLabel.Text = "Claim Name:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "ClaimNameLabel";
+            this.label2.Size = new System.Drawing.Size(123, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Claim Name:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 38);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "PlaceHolder";
+            this.ClaimNameLabel.AutoSize = true;
+            this.ClaimNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimNameLabel.Location = new System.Drawing.Point(3, 22);
+            this.ClaimNameLabel.Name = "label2";
+            this.ClaimNameLabel.Size = new System.Drawing.Size(206, 38);
+            this.ClaimNameLabel.TabIndex = 1;
+            this.ClaimNameLabel.Text = "PlaceHolder";
             // 
             // label1
             // 
@@ -160,13 +156,13 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 476);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 87);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "\r\nSize: \r\n999,999\r\n";
+            this.ClaimSizeLabel.AutoSize = true;
+            this.ClaimSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimSizeLabel.Location = new System.Drawing.Point(3, 476);
+            this.ClaimSizeLabel.Name = "label3";
+            this.ClaimSizeLabel.Size = new System.Drawing.Size(111, 87);
+            this.ClaimSizeLabel.TabIndex = 8;
+            this.ClaimSizeLabel.Text = "\r\nSize: \r\n999,999\r\n";
             // 
             // flowLayoutPanel2
             // 
@@ -198,11 +194,7 @@
             this.ClaimCenterLabel.Size = new System.Drawing.Size(277, 117);
             this.ClaimCenterLabel.TabIndex = 3;
             this.ClaimCenterLabel.Text = "\r\nClaim Center: \r\n-9999,-999,-9999\r\n";
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(893, 586);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
@@ -215,23 +207,67 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            Location = new System.Drawing.Point(4, 5);
+            Name = "ClaimView";
+            Padding = new System.Windows.Forms.Padding(3);
+            Size = new System.Drawing.Size(734, 571);
+            TabIndex = 0;
+            Text = "ClaimView";
+            UseVisualStyleBackColor = true;
         }
 
-        #endregion
-
+        private DataGridView ClaimSelect;
+        private TabControl ViewSwapper;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label ClaimNameLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ClaimNameLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ClaimOwnerLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label ClaimContentsLabel;
         private System.Windows.Forms.Label ClaimDatesLabel;
         private System.Windows.Forms.Label MainClaimLabel;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label ClaimSizeLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label CordsDisplayLabel;
         private System.Windows.Forms.Label ClaimCenterLabel;
+
+        public void ShowClaimData(object sender, EventArgs e) {
+            if (ClaimSelect.SelectedCells.Count > 0) {
+
+                int selectedRowIndex = ClaimSelect.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = ClaimSelect.Rows[selectedRowIndex];
+                string claimNameSelected = Convert.ToString(selectedRow.Cells["ClaimName"].Value);
+
+                ViewSwapper.SelectedIndex = 1;
+
+                string claimQuery = $"SELECT InGameName, ClaimName, Size, Contents, DateCreated, DateDeleted, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim INNER JOIN [Member] ON OwnerMemberKey=[Member].[MemberKey] WHERE ClaimName = '{claimNameSelected}'";
+                SqlCommand claimCmd = new SqlCommand(claimQuery, sqlConnection);
+                SqlDataAdapter claimDataAdapter = new SqlDataAdapter(claimCmd);
+
+                DataTable ClaimOutputTable = new DataTable();
+
+                try {
+                    sqlConnection.Open();
+                    claimDataAdapter.Fill(ClaimOutputTable);
+                }
+                catch(Exception ex) {
+                    ClaimContentsLabel.Text = "An error happened :P, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
+                } finally { sqlConnection.Close(); }
+
+                ClaimNameLabel.Text = claimNameSelected;
+                ClaimContentsLabel.Text ="Contents: " + ClaimOutputTable.Rows[0].Field<string>("Contents");
+                ClaimOwnerLabel.Text = ClaimOutputTable.Rows[0].Field<string>("InGameName");
+                ClaimSizeLabel.Text = "\nSize: " + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
+                if (ClaimOutputTable.Rows[0].Field<DateTime?>("DateDeleted") == null) {
+                    ClaimDatesLabel.Text = "\nDate Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
+                } else {
+                    ClaimDatesLabel.Text = "Date Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy") + 
+                                         "\nDate Deleted: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateDeleted").ToString("M/d/yyyy");
+                }
+
+            }
+        }
     }
 }

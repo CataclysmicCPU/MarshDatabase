@@ -1,16 +1,11 @@
 ﻿using static MarshDatabase.PlayerView;
+using static MarshDatabase.ClaimView;
 
 namespace MarshDatabase {
     partial class MarshDB {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -18,12 +13,6 @@ namespace MarshDatabase {
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent() {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,13 +27,14 @@ namespace MarshDatabase {
             this.PlayerSearch = new System.Windows.Forms.TextBox();
             this.NameSelect = new System.Windows.Forms.DataGridView();
             this.SearchClaimsSelect = new System.Windows.Forms.TabPage();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.ClaimsSearchBox = new System.Windows.Forms.TextBox();
-            this.ClaimSelect = new System.Windows.Forms.DataGridView();
             this.PlayerViewSeperator = new System.Windows.Forms.SplitContainer();
             this.ViewSwapper = new System.Windows.Forms.TabControl();
-            this.PlayerView = new PlayerView(NameSelect);
-            this.ClaimView = new ClaimView(ClaimSelect);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ClaimSelect = new System.Windows.Forms.DataGridView();
+            this.PlayerView = new PlayerView(NameSelect, ViewSwapper);
+            this.ClaimView = new ClaimView(ClaimSelect, ViewSwapper);
 
             this.MainDataTabSelect.SuspendLayout();
             this.SearchMembersSelect.SuspendLayout();
@@ -54,14 +44,16 @@ namespace MarshDatabase {
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).BeginInit();
             this.SearchClaimsSelect.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
-            this.splitContainer6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ClaimSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerViewSeperator)).BeginInit();
             this.PlayerViewSeperator.Panel1.SuspendLayout();
             this.PlayerViewSeperator.Panel2.SuspendLayout();
             this.PlayerViewSeperator.SuspendLayout();
             this.ViewSwapper.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClaimSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // MainDataTabSelect
@@ -161,11 +153,11 @@ namespace MarshDatabase {
             this.NameSelect.ShowEditingIcon = false;
             this.NameSelect.Size = new System.Drawing.Size(117, 515);
             this.NameSelect.TabIndex = 0;
-            this.NameSelect.SelectionChanged += this.PlayerView.ShowPlayerData;
+            this.NameSelect.SelectionChanged += PlayerView.ShowPlayerData;
             // 
             // SearchClaimsSelect
             // 
-            this.SearchClaimsSelect.Controls.Add(this.splitContainer6);
+            this.SearchClaimsSelect.Controls.Add(this.splitContainer1);
             this.SearchClaimsSelect.Location = new System.Drawing.Point(4, 25);
             this.SearchClaimsSelect.Name = "SearchClaimsSelect";
             this.SearchClaimsSelect.Padding = new System.Windows.Forms.Padding(3);
@@ -174,13 +166,6 @@ namespace MarshDatabase {
             this.SearchClaimsSelect.Text = "Claims";
             this.SearchClaimsSelect.UseVisualStyleBackColor = true;
             // 
-            // splitContainer6
-            // 
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Size = new System.Drawing.Size(150, 100);
-            this.splitContainer6.TabIndex = 0;
-            // 
             // ClaimsSearchBox
             // 
             this.ClaimsSearchBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -188,6 +173,63 @@ namespace MarshDatabase {
             this.ClaimsSearchBox.Name = "ClaimsSearchBox";
             this.ClaimsSearchBox.Size = new System.Drawing.Size(26, 22);
             this.ClaimsSearchBox.TabIndex = 2;
+            this.ClaimsSearchBox.TextChanged += new System.EventHandler(this.ClaimSearchChanged);
+            // 
+            // PlayerViewSeperator
+            // 
+            this.PlayerViewSeperator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PlayerViewSeperator.IsSplitterFixed = true;
+            this.PlayerViewSeperator.Location = new System.Drawing.Point(0, 0);
+            this.PlayerViewSeperator.Name = "PlayerViewSeperator";
+            // 
+            // PlayerViewSeperator.Panel1
+            // 
+            this.PlayerViewSeperator.Panel1.AutoScroll = true;
+            this.PlayerViewSeperator.Panel1.Controls.Add(this.MainDataTabSelect);
+            // 
+            // PlayerViewSeperator.Panel2
+            // 
+            this.PlayerViewSeperator.Panel2.Controls.Add(this.ViewSwapper);
+            this.PlayerViewSeperator.Size = new System.Drawing.Size(877, 580);
+            this.PlayerViewSeperator.SplitterDistance = 131;
+            this.PlayerViewSeperator.TabIndex = 2;
+            // 
+            // ViewSwapper
+            // 
+            this.ViewSwapper.Controls.Add((System.Windows.Forms.Control)this.PlayerView);
+            this.ViewSwapper.Controls.Add((System.Windows.Forms.Control)this.ClaimView);
+            this.ViewSwapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ViewSwapper.Location = new System.Drawing.Point(0, 0);
+            this.ViewSwapper.Name = "ViewSwapper";
+            this.ViewSwapper.SelectedIndex = 0;
+            this.ViewSwapper.Size = new System.Drawing.Size(742, 580);
+            this.ViewSwapper.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.ClaimsSearchBox);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.ClaimSelect);
+            this.splitContainer1.Size = new System.Drawing.Size(117, 545);
+            this.splitContainer1.SplitterDistance = 25;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(117, 22);
+            this.textBox1.TabIndex = 0;
             // 
             // ClaimSelect
             // 
@@ -234,43 +276,12 @@ namespace MarshDatabase {
             this.ClaimSelect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ClaimSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ClaimSelect.ShowEditingIcon = false;
-            this.ClaimSelect.Size = new System.Drawing.Size(87, 545);
-            this.ClaimSelect.TabIndex = 0;
-            this.ClaimSelect.SelectionChanged += this.ClaimView.ShowClaimData;
-            // 
-            // PlayerViewSeperator
-            // 
-            this.PlayerViewSeperator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PlayerViewSeperator.IsSplitterFixed = true;
-            this.PlayerViewSeperator.Location = new System.Drawing.Point(0, 0);
-            this.PlayerViewSeperator.Name = "PlayerViewSeperator";
-            // 
-            // PlayerViewSeperator.Panel1
-            // 
-            this.PlayerViewSeperator.Panel1.AutoScroll = true;
-            this.PlayerViewSeperator.Panel1.Controls.Add(this.MainDataTabSelect);
-            // 
-            // PlayerViewSeperator.Panel2
-            // 
-            this.PlayerViewSeperator.Panel2.Controls.Add(this.ViewSwapper);
-            this.PlayerViewSeperator.Size = new System.Drawing.Size(877, 580);
-            this.PlayerViewSeperator.SplitterDistance = 131;
-            this.PlayerViewSeperator.TabIndex = 2;
-            // 
-            // ViewSwapper
-            // 
-            this.ViewSwapper.Controls.Add((System.Windows.Forms.Control)this.PlayerView);
-            this.ViewSwapper.Controls.Add((System.Windows.Forms.Control)this.ClaimView);
-            this.ViewSwapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ViewSwapper.Location = new System.Drawing.Point(0, 0);
-            this.ViewSwapper.Name = "ViewSwapper";
-            this.ViewSwapper.SelectedIndex = 0;
-            this.ViewSwapper.Size = new System.Drawing.Size(742, 580);
-            this.ViewSwapper.TabIndex = 0;
+            this.ClaimSelect.Size = new System.Drawing.Size(117, 516);
+            this.ClaimSelect.TabIndex = 1;
+            this.ClaimSelect.SelectionChanged += ClaimView.ShowClaimData;
             // 
             // MarshDB
-            //
-
+            // 
             this.ClientSize = new System.Drawing.Size(877, 580);
             this.Controls.Add(this.PlayerViewSeperator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -288,19 +299,24 @@ namespace MarshDatabase {
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).EndInit();
             this.SearchClaimsSelect.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
-            this.splitContainer6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ClaimSelect)).EndInit();
             this.PlayerViewSeperator.Panel1.ResumeLayout(false);
             this.PlayerViewSeperator.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerViewSeperator)).EndInit();
             this.PlayerViewSeperator.ResumeLayout(false);
             this.ViewSwapper.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ClaimSelect)).EndInit();
             this.ResumeLayout(false);
 
         }
 
-        #endregion
+        private void ClaimSlect(object sender, System.EventArgs e) {
+            throw new System.NotImplementedException();
+        }
 
         private System.Windows.Forms.TabControl TabControl;
         private System.Windows.Forms.TabPage Players;
@@ -314,11 +330,12 @@ namespace MarshDatabase {
         private System.Windows.Forms.TextBox PlayerSearch;
         private System.Windows.Forms.DataGridView NameSelect;
         private System.Windows.Forms.TabPage SearchClaimsSelect;
-        private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.TextBox ClaimsSearchBox;
-        private System.Windows.Forms.DataGridView ClaimSelect;
         private System.Windows.Forms.SplitContainer PlayerViewSeperator;
         private System.Windows.Forms.TabControl ViewSwapper;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView ClaimSelect;
         private IPlayerView PlayerView;
         private IClaimView ClaimView;
     }

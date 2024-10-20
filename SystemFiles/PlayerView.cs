@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
+using static MarshDatabase.MarshDB;
 
 namespace MarshDatabase {
 
@@ -15,7 +16,7 @@ namespace MarshDatabase {
     }
 
     internal class PlayerView : TabPage, IPlayerView {
-        public PlayerView(DataGridView NameSelectPass) {
+        public PlayerView(DataGridView NameSelectPass, TabControl viewSelectorPass) {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -29,6 +30,7 @@ namespace MarshDatabase {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NameSelect = NameSelectPass;
+            this.ViewSelector = viewSelectorPass;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -418,7 +420,7 @@ namespace MarshDatabase {
             this.RolesColumn.Name = "RolesColumn";
             this.RolesColumn.ReadOnly = true;
 
-            
+
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -447,6 +449,7 @@ namespace MarshDatabase {
         }
 
         private DataGridView NameSelect;
+        private TabControl ViewSelector;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -569,6 +572,8 @@ namespace MarshDatabase {
                     }
                 }
                 FarmSelect.ClearSelection();
+
+                ViewSelector.SelectedIndex = 0;
             }
         }
     }

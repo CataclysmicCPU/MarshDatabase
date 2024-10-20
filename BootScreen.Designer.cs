@@ -28,70 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+            System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.PictureBox pictureBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootScreen));
-            this.LogoBox = new System.Windows.Forms.PictureBox();
-            this.StatusLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).BeginInit();
+            this.BootStatusLabel = new System.Windows.Forms.Label();
+            this.EasterEggLabel = new System.Windows.Forms.Label();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            label2 = new System.Windows.Forms.Label();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // LogoBox
+            // tableLayoutPanel1
             // 
-            this.LogoBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogoBox.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
-            this.LogoBox.Location = new System.Drawing.Point(3, 93);
-            this.LogoBox.Name = "LogoBox";
-            this.LogoBox.Size = new System.Drawing.Size(867, 386);
-            this.LogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.LogoBox.TabIndex = 0;
-            this.LogoBox.TabStop = false;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel1.Controls.Add(this.EasterEggLabel, 0, 2);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(868, 606);
+            tableLayoutPanel1.TabIndex = 0;
             // 
-            // StatusLabel
+            // tableLayoutPanel2
             // 
-            this.StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLabel.Location = new System.Drawing.Point(350, 482);
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(170, 39);
-            this.StatusLabel.TabIndex = 1;
-            this.StatusLabel.Text = "Booting...";
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(label2, 0, 0);
+            tableLayoutPanel2.Controls.Add(pictureBox1, 0, 1);
+            tableLayoutPanel2.Controls.Add(this.BootStatusLabel, 0, 2);
+            tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tableLayoutPanel2.Location = new System.Drawing.Point(176, 124);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.30612F));
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.81633F));
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.36735F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(514, 357);
+            tableLayoutPanel2.TabIndex = 0;
             // 
-            // label1
+            // label2
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(233, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(409, 39);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Marsh Database System";
+            label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Location = new System.Drawing.Point(3, 6);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(508, 42);
+            label2.TabIndex = 2;
+            label2.Text = "Marsh Database System";
+            label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            pictureBox1.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
+            pictureBox1.Location = new System.Drawing.Point(3, 57);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(508, 230);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // BootStatusLabel
+            // 
+            this.BootStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BootStatusLabel.AutoSize = true;
+            this.BootStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BootStatusLabel.Location = new System.Drawing.Point(3, 304);
+            this.BootStatusLabel.Name = "BootStatusLabel";
+            this.BootStatusLabel.Size = new System.Drawing.Size(508, 38);
+            this.BootStatusLabel.TabIndex = 1;
+            this.BootStatusLabel.Text = "Booting...";
+            this.BootStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BootStatusLabel.Click += new System.EventHandler(this.BootStatusLabel_Click);
+            // 
+            // EasterEggLabel
+            // 
+            this.EasterEggLabel.AutoSize = true;
+            this.EasterEggLabel.Location = new System.Drawing.Point(3, 484);
+            this.EasterEggLabel.Name = "EasterEggLabel";
+            this.EasterEggLabel.Size = new System.Drawing.Size(0, 16);
+            this.EasterEggLabel.TabIndex = 1;
             // 
             // BootScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 606);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.StatusLabel);
-            this.Controls.Add(this.LogoBox);
+            this.Controls.Add(tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 653);
             this.Name = "BootScreen";
-            this.Text = "BootScreen";
-            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).EndInit();
+            this.Text = "Marsh Database - Booting...";
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox LogoBox;
-        private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label BootStatusLabel;
+        private System.Windows.Forms.Label EasterEggLabel;
     }
 }

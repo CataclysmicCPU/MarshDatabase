@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DarkModeForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace MarshDatabase {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            DarkModeCS darkModeCS = new DarkModeCS(this);
+            darkModeCS.ApplyTheme(true);
         }
     }
 }
