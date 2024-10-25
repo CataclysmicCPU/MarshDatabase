@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
-using static MarshDatabase.MarshDB;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -16,15 +11,16 @@ namespace MarshDatabase {
     }
 
     internal class ClaimView : TabPage, IClaimView {
-        public ClaimView(DataGridView ClaimSlectPass, TabControl ViewSelectorPass) {
+        public ClaimView(DataGridView ClaimSlectPass, TabControl ViewSelectorPass, string swapIndex) {
             this.ViewSwapper = ViewSelectorPass;
             this.ClaimSelect = ClaimSlectPass;
+            this.swapToPlayerName = swapIndex;
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.ClaimNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ClaimOwnerLabel = new System.Windows.Forms.Label();
+            this.ClaimOwnerLabel = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.ClaimContentsLabel = new System.Windows.Forms.Label();
             this.ClaimDatesLabel = new System.Windows.Forms.Label();
@@ -216,6 +212,7 @@ namespace MarshDatabase {
             UseVisualStyleBackColor = true;
         }
 
+        private string swapToPlayerName;
         private DataGridView ClaimSelect;
         private TabControl ViewSwapper;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -223,7 +220,7 @@ namespace MarshDatabase {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label ClaimNameLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label ClaimOwnerLabel;
+        private System.Windows.Forms.LinkLabel ClaimOwnerLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label ClaimContentsLabel;
         private System.Windows.Forms.Label ClaimDatesLabel;
@@ -233,14 +230,14 @@ namespace MarshDatabase {
         private System.Windows.Forms.Label CordsDisplayLabel;
         private System.Windows.Forms.Label ClaimCenterLabel;
 
-        public void ShowClaimData(object sender, EventArgs e) {
+        void IClaimView.ShowClaimData(object sender, EventArgs e) {
             if (ClaimSelect.SelectedCells.Count > 0) {
 
                 int selectedRowIndex = ClaimSelect.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = ClaimSelect.Rows[selectedRowIndex];
                 string claimNameSelected = Convert.ToString(selectedRow.Cells["ClaimName"].Value);
 
-                ViewSwapper.SelectedIndex = 1;
+
 
                 string claimQuery = $"SELECT InGameName, ClaimName, Size, Contents, DateCreated, DateDeleted, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim INNER JOIN [Member] ON OwnerMemberKey=[Member].[MemberKey] WHERE ClaimName = '{claimNameSelected}'";
                 SqlCommand claimCmd = new SqlCommand(claimQuery, sqlConnection);
@@ -251,23 +248,62 @@ namespace MarshDatabase {
                 try {
                     sqlConnection.Open();
                     claimDataAdapter.Fill(ClaimOutputTable);
-                }
-                catch(Exception ex) {
+                } catch (Exception ex) {
                     ClaimContentsLabel.Text = "An error happened :P, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
                 } finally { sqlConnection.Close(); }
 
                 ClaimNameLabel.Text = claimNameSelected;
-                ClaimContentsLabel.Text ="Contents: " + ClaimOutputTable.Rows[0].Field<string>("Contents");
+                ClaimContentsLabel.Text = "Contents: " + ClaimOutputTable.Rows[0].Field<string>("Contents");
                 ClaimOwnerLabel.Text = ClaimOutputTable.Rows[0].Field<string>("InGameName");
                 ClaimSizeLabel.Text = "\nSize: " + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
                 if (ClaimOutputTable.Rows[0].Field<DateTime?>("DateDeleted") == null) {
                     ClaimDatesLabel.Text = "\nDate Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
                 } else {
-                    ClaimDatesLabel.Text = "Date Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy") + 
+                    ClaimDatesLabel.Text = "Date Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy") +
                                          "\nDate Deleted: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateDeleted").ToString("M/d/yyyy");
                 }
-
+                if (ClaimOutputTable.Rows[0].Field<int?>("SECornerY") == null) {
+                    CordsDisplayLabel.Text =
+                        "Claim Corners: \nNW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " NE: " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\n SW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " SE: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerZ");
+                } else {
+                    CordsDisplayLabel.Text =
+                        "Claim Corners: \nNW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " NE: " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\n SW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + " SE: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ", " +
+                        ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + "";
+                }
+                if (ClaimOutputTable.Rows[0].Field<int?>("SECornerY") == null) {
+                   ClaimCenterLabel.Text = "\nClaim Center: " +
+                   (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
+                   (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                } else {
+                    ClaimCenterLabel.Text = "\nClaim Center: " +
+                    (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
+                    (ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ClaimOutputTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
+                    (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                }
+                ViewSwapper.SelectedIndex = 1;
             }
+        }
+        void swapToPlayer(object sender, EventArgs e) {
+            swapToPlayerName = ClaimOwnerLabel.Text;
         }
     }
 }

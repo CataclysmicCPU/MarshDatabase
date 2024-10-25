@@ -180,6 +180,9 @@
     <Compile Include="BootScreen.Designer.cs">
       <DependentUpon>BootScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemFiles\FarmView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SystemFiles\ClaimView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -222,6 +225,9 @@
     </Compile>
     <EmbeddedResource Include="MarshDB.resx">
       <DependentUpon>MarshDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemFiles\PlayerView.resx">
+      <DependentUpon>PlayerView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

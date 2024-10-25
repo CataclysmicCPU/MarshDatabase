@@ -1,28 +1,22 @@
-﻿namespace MarshDatabase {
-    partial class Form1 {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static MarshDatabase.Program;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent() {
+namespace MarshDatabase {
+    public interface IFarmView {
+        void ShowFarmData(object sender, EventArgs e);
+    }
+    internal class FarmView : TabPage, IFarmView {
+        public FarmView(DataGridView FarmSelectPass, TabControl ViewSwapperPass, string playerSwapName) {
+            this.playerSwapName = playerSwapName;
+            FarmSelect = FarmSelectPass;
+            ViewSwapper = ViewSwapperPass;
             System.Windows.Forms.SplitContainer splitContainer1;
             System.Windows.Forms.SplitContainer splitContainer2;
             System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -36,6 +30,7 @@
             this.ShellClaimLabel = new System.Windows.Forms.LinkLabel();
             this.CreatorNameLabel = new System.Windows.Forms.LinkLabel();
             this.DatesDisplayLabel = new System.Windows.Forms.Label();
+            this.FarmLocationLabel = new System.Windows.Forms.Label();
             splitContainer1 = new System.Windows.Forms.SplitContainer();
             splitContainer2 = new System.Windows.Forms.SplitContainer();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -162,6 +157,7 @@
             flowLayoutPanel2.Controls.Add(this.ShellClaimLabel);
             flowLayoutPanel2.Controls.Add(label2);
             flowLayoutPanel2.Controls.Add(this.CreatorNameLabel);
+            flowLayoutPanel2.Controls.Add(this.FarmLocationLabel);
             flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -220,15 +216,20 @@
             this.DatesDisplayLabel.Size = new System.Drawing.Size(220, 190);
             this.DatesDisplayLabel.TabIndex = 0;
             this.DatesDisplayLabel.Text = "DateCreated: \r\nPlaceHolder\r\n\r\nDate Deleted:\r\nPlaceHolder";
+            //
+            //FarmLocationLabel
+            this.FarmLocationLabel.AutoSize = true;
+            this.FarmLocationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmLocationLabel.Location = new System.Drawing.Point(2, 0);
+            this.FarmLocationLabel.Name = "FarmLocationLabel";
+            this.FarmLocationLabel.Size = new System.Drawing.Size(220,190);
+            this.FarmLocationLabel.TabIndex = 0;
+            this.FarmLocationLabel.Text = "\nFarm Location: \nPlaceHolder";
+            //
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 664);
             this.Controls.Add(splitContainer1);
-            this.Name = "Form1";
-            this.Text = "Form1";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(splitContainer1)).EndInit();
@@ -249,15 +250,84 @@
             flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
+            Location = new System.Drawing.Point(4, 5);
+            Name = "FarmView";
+            Padding = new System.Windows.Forms.Padding(3);
+            Size = new System.Drawing.Size(734, 571);
+            TabIndex = 0;
+            Text = "FarmView";
+            UseVisualStyleBackColor = true;
         }
-
-        #endregion
-
+        private string playerSwapName;
+        private System.Windows.Forms.DataGridView FarmSelect;
+        private System.Windows.Forms.TabControl ViewSwapper;
         private System.Windows.Forms.PictureBox FarmImage;
         private System.Windows.Forms.Label AutomatedItemLabel;
         private System.Windows.Forms.Label InputItemsLabel;
         private System.Windows.Forms.LinkLabel ShellClaimLabel;
         private System.Windows.Forms.LinkLabel CreatorNameLabel;
         private System.Windows.Forms.Label DatesDisplayLabel;
+        private System.Windows.Forms.Label FarmLocationLabel;
+
+        void IFarmView.ShowFarmData(object sender, EventArgs e) {
+            if (FarmSelect.SelectedCells.Count > 0) {
+
+
+
+                int selectedRowIndex = FarmSelect.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = FarmSelect.Rows[selectedRowIndex];
+                string farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
+
+                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem3, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
+
+                SqlCommand sqlCommand = new SqlCommand(farmQuery, sqlConnection);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+
+                DataTable farmTable = new DataTable();
+
+                try {
+                    sqlConnection.Open();
+                    adapter.Fill(farmTable);
+                } catch (Exception ex) {
+                    AutomatedItemLabel.Text = "An error occured, please contact CataclysmicCPU and give him this error message: " + ex.Message;
+                } finally { sqlConnection.Close(); }
+
+                AutomatedItemLabel.Text = "Automated Item: \n" + farmTable.Rows[0][0] + " " + farmTable.Rows[0][1] + "/h";
+                ShellClaimLabel.Text = farmTable.Rows[0].Field<string>("ClaimName");
+                CreatorNameLabel.Text = farmTable.Rows[0].Field<string>("InGameName");
+                DatesDisplayLabel.Text = "Date Created:\n " + farmTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
+                
+                if (farmTable.Rows[0].Field<DateTime?>("DateRemoved") != null) {
+                    DatesDisplayLabel.Text += "\nDate Removed: \n" + farmTable.Rows[0].Field<DateTime>("DateRemoved").ToString("M/d/yyyy");
+                }
+
+                if (farmTable.Rows[0].Field<string>("RequiredInputItem1") != null) {
+                    InputItemsLabel.Text = "\nRequired Input Items:\n" + farmTable.Rows[0].Field<string>("RequiredInputRate1") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem1") + "/h";
+                } else {
+                    InputItemsLabel.Text = "\nRequired Input Items:\nNone";
+                }
+                if (farmTable.Rows[0].Field<string>("RequiredInputRate2") != null) {
+                    InputItemsLabel.Text = "\n" + farmTable.Rows[0].Field<string>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
+                }
+                if (farmTable.Rows[0].Field<string>("RequiredInputRate3") != null) {
+                    InputItemsLabel.Text = "\n" + farmTable.Rows[0].Field<string>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
+                }
+
+                if (farmTable.Rows[0].Field<int?>("SECornerY") == null) {
+
+                    FarmLocationLabel.Text = "\nClaim Center:\n" +
+                    (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
+                    (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                } else {
+                    FarmLocationLabel.Text = "\nClaim Center:\n" +
+                    (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
+                    (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
+                    (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                }
+
+                ViewSwapper.SelectedIndex = 2;
+            }
+        }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
-using static MarshDatabase.MarshDB;
 
 namespace MarshDatabase {
 
@@ -66,7 +61,7 @@ namespace MarshDatabase {
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -469,6 +464,7 @@ namespace MarshDatabase {
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridView RolesTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn RolesColumn;
+        public string inGameNameSelected;
 
         void IPlayerView.ShowPlayerData(object sender, EventArgs e) {
             if (NameSelect.SelectedCells.Count > 0) {
@@ -482,7 +478,7 @@ namespace MarshDatabase {
 
                 int selectedRowIndex = NameSelect.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = NameSelect.Rows[selectedRowIndex];
-                string inGameNameSelected = Convert.ToString(selectedRow.Cells["Flatnet Name"].Value);
+                inGameNameSelected = Convert.ToString(selectedRow.Cells["Flatnet Name"].Value);
 
                 string PlayerQuery = $"SELECT InGameName, DiscordName, JoinDate, QuitDate, QuitReason, AdditionalInfo FROM dbo.Member WHERE InGameName='{inGameNameSelected}'";
                 string RoleQuery = $"SELECT Mayor, ViceMayor AS [Vice Mayor], CouncilRole, ServerBooster AS [Server Booster], Admin, MogswampMod AS [Mogswamp Mod], MarshPeep AS [Marsh Peep], MarshAssociate AS [Marsh Associate], Java, Bedrock FROM dbo.Member WHERE InGameName = '{inGameNameSelected}'";
@@ -519,6 +515,7 @@ namespace MarshDatabase {
                 if (playerOutputTable != null) {
                     FlatnetNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("InGameName");
                     DiscordNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("DiscordName");
+
                     PlayerInfoLabel.Text = "Player Info: \n" + playerOutputTable.Rows[0].Field<string>("AdditionalInfo");
                     JoinDateLabel.Text = "Join Date: " + playerOutputTable.Rows[0].Field<DateTime>("JoinDate").ToString("M/d/yyyy");
                     if (!(playerOutputTable.Rows[0].Field<string>("AdditionalInfo") == null)) {
@@ -571,9 +568,9 @@ namespace MarshDatabase {
                         );
                     }
                 }
-                FarmSelect.ClearSelection();
-
                 ViewSelector.SelectedIndex = 0;
+
+                FarmSelect.ClearSelection();
             }
         }
     }
