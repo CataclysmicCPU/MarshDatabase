@@ -9,7 +9,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
-
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+//THIS IS NOT MY CODE I STOLE IT TO MAKE DARK MODE//
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 namespace DarkModeForms
 {
     /// <summary>This tries to automatically apply Windows Dark Mode (if enabled) to a Form.
@@ -813,24 +819,24 @@ namespace DarkModeForms
             //if (IsDarkMode)
             if (ColorMode <= 0)
             {
-                _ret.Background = Color.FromArgb(32, 32, 32);   //<- Negro Claro
-                _ret.BackgroundDark = Color.FromArgb(18, 18, 18);
+                _ret.Background = Color.FromArgb(37, 37, 46);   //<- Negro Claro
+                _ret.BackgroundDark = ControlPaint.Light(_ret.Background);
                 _ret.BackgroundLight = ControlPaint.Light(_ret.Background);
 
-                _ret.Surface = Color.FromArgb(43, 43, 43);      //<- Gris Oscuro
-                _ret.SurfaceLight = Color.FromArgb(50, 50, 50);
-                _ret.SurfaceDark = Color.FromArgb(29, 29, 29);
+                _ret.Surface = Color.FromArgb(44, 45, 56);      //<- Gris Oscuro
+                _ret.SurfaceLight = Color.FromArgb(44, 45, 56);
+                _ret.SurfaceDark = Color.FromArgb(44, 45, 56);
 
-                _ret.TextActive = Color.White;
-                _ret.TextInactive = Color.FromArgb(176, 176, 176);  //<- Blanco Palido
+                _ret.TextActive = Color.FromArgb(235, 235, 245);
+                _ret.TextInactive = Color.FromArgb(185, 185, 196);  //<- Blanco Palido
                 _ret.TextInAccent = GetReadableColor(_ret.Accent);
 
-                _ret.Control = Color.FromArgb(55, 55, 55);       //<- Gris Oscuro
+                _ret.Control = Color.FromArgb(33, 33, 36);       //<- Gris Oscuro
                 _ret.ControlDark = ControlPaint.Dark(_ret.Control);
-                _ret.ControlLight = Color.FromArgb(67, 67, 67);
+                _ret.ControlLight = Color.FromArgb(33, 33, 36);
 
-                _ret.Primary = Color.FromArgb(3, 218, 198);   //<- Verde Pastel
-                _ret.Secondary = Color.MediumSlateBlue;         //<- Magenta Claro
+                _ret.Primary = Color.FromArgb(0, 255, 255);   //<- Verde Pastel
+                _ret.Secondary = Color.FromArgb(0, 255, 0); //Color.MediumSlateBlue;         //<- Magenta Claro
 
 
             }

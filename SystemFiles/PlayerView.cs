@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.RightsManagement;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -8,6 +9,10 @@ namespace MarshDatabase {
 
     public interface IPlayerView {
         void ShowPlayerData(object sender, EventArgs e);
+        string GetFarmNameSwap();
+        string GetClaimSwapName();
+        void SetClaimNameSwap(string s);
+        void SetFarmNameSwap(string s);
     }
 
     internal class PlayerView : TabPage, IPlayerView {
@@ -26,6 +31,7 @@ namespace MarshDatabase {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NameSelect = NameSelectPass;
             this.ViewSelector = viewSelectorPass;
+            string fontFamily = Program.fontFamily;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -115,7 +121,7 @@ namespace MarshDatabase {
             // QuitReasonLabel
             // 
             this.QuitReasonLabel.AutoSize = true;
-            this.QuitReasonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitReasonLabel.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitReasonLabel.Location = new System.Drawing.Point(3, 169);
             this.QuitReasonLabel.Name = "QuitReasonLabel";
             this.QuitReasonLabel.Size = new System.Drawing.Size(138, 25);
@@ -126,7 +132,7 @@ namespace MarshDatabase {
             // JoinDateLabel
             // 
             this.JoinDateLabel.AutoSize = true;
-            this.JoinDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JoinDateLabel.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JoinDateLabel.Location = new System.Drawing.Point(3, 110);
             this.JoinDateLabel.Name = "JoinDateLabel";
             this.JoinDateLabel.Size = new System.Drawing.Size(111, 25);
@@ -137,7 +143,7 @@ namespace MarshDatabase {
             // PlayerInfoLabel
             // 
             this.PlayerInfoLabel.AutoSize = true;
-            this.PlayerInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerInfoLabel.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayerInfoLabel.Location = new System.Drawing.Point(3, 0);
             this.PlayerInfoLabel.Name = "PlayerInfoLabel";
             this.PlayerInfoLabel.Size = new System.Drawing.Size(179, 25);
@@ -147,7 +153,7 @@ namespace MarshDatabase {
             // QuitDateLabel
             // 
             this.QuitDateLabel.AutoSize = true;
-            this.QuitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitDateLabel.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitDateLabel.Location = new System.Drawing.Point(3, 136);
             this.QuitDateLabel.Name = "QuitDateLabel";
             this.QuitDateLabel.Size = new System.Drawing.Size(110, 25);
@@ -177,7 +183,7 @@ namespace MarshDatabase {
             // 
             // DiscordNameDisplay
             // 
-            this.DiscordNameDisplay.Font = new System.Drawing.Font("Microsoft Tai Le", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscordNameDisplay.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiscordNameDisplay.Location = new System.Drawing.Point(3, 90);
             this.DiscordNameDisplay.Name = "DiscordNameDisplay";
             this.DiscordNameDisplay.Size = new System.Drawing.Size(535, 50);
@@ -187,7 +193,7 @@ namespace MarshDatabase {
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font(fontFamily, 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 20);
@@ -197,7 +203,7 @@ namespace MarshDatabase {
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font(fontFamily, 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 20);
@@ -206,7 +212,7 @@ namespace MarshDatabase {
             // 
             // FlatnetNameDisplay
             // 
-            this.FlatnetNameDisplay.Font = new System.Drawing.Font("Microsoft Tai Le", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FlatnetNameDisplay.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FlatnetNameDisplay.Location = new System.Drawing.Point(3, 20);
             this.FlatnetNameDisplay.Name = "FlatnetNameDisplay";
             this.FlatnetNameDisplay.Size = new System.Drawing.Size(535, 50);
@@ -243,7 +249,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -255,7 +261,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -270,7 +276,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -286,6 +292,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.ShowEditingIcon = false;
             this.ClaimsSelect.Size = new System.Drawing.Size(200, 258);
             this.ClaimsSelect.TabIndex = 0;
+            this.ClaimsSelect.CellClick += SwapToClaim;
             // 
             // Claim
             // 
@@ -303,7 +310,7 @@ namespace MarshDatabase {
             this.FarmSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -315,7 +322,7 @@ namespace MarshDatabase {
             this.FarmSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -330,7 +337,7 @@ namespace MarshDatabase {
             this.FarmSelect.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -346,6 +353,7 @@ namespace MarshDatabase {
             this.FarmSelect.ShowEditingIcon = false;
             this.FarmSelect.Size = new System.Drawing.Size(200, 258);
             this.FarmSelect.TabIndex = 1;
+            this.FarmSelect.CellClick += SwapToFarm;
             // 
             // Column1
             // 
@@ -363,7 +371,7 @@ namespace MarshDatabase {
             this.RolesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -375,7 +383,7 @@ namespace MarshDatabase {
             this.RolesTable.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -391,7 +399,7 @@ namespace MarshDatabase {
             this.RolesTable.RightToLeft = System.Windows.Forms.RightToLeft.No;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -440,9 +448,10 @@ namespace MarshDatabase {
             TabIndex = 0;
             Text = "PlayerView";
             UseVisualStyleBackColor = true;
-
         }
 
+        public string claimNameSwap;
+        public string farmNameSwap;
         private DataGridView NameSelect;
         private TabControl ViewSelector;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -511,7 +520,6 @@ namespace MarshDatabase {
                     FlatnetNameDisplay.Text = "An error occured.";
                     DiscordNameDisplay.Text = "An error occured";
                 } finally { sqlConnection.Close(); }
-
                 if (playerOutputTable != null) {
                     FlatnetNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("InGameName");
                     DiscordNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("DiscordName");
@@ -568,11 +576,32 @@ namespace MarshDatabase {
                         );
                     }
                 }
-                ViewSelector.SelectedIndex = 0;
-
                 FarmSelect.ClearSelection();
+
+                ViewSelector.SelectedIndex = 0;
             }
         }
+
+        private void SwapToClaim(object sender, EventArgs e) { 
+            claimNameSwap = ClaimsSelect.SelectedCells[0].Value.ToString();
+        }
+
+        private void SwapToFarm(object sender, EventArgs e) {
+            farmNameSwap = FarmSelect.SelectedCells[0].Value.ToString();
+        }
+        string IPlayerView.GetFarmNameSwap() { 
+            return farmNameSwap;
+        }
+        string IPlayerView.GetClaimSwapName() {
+            return claimNameSwap;
+        }
+        void IPlayerView.SetFarmNameSwap(string s) { 
+            farmNameSwap = s;
+        }
+        void IPlayerView.SetClaimNameSwap(string s) {
+            claimNameSwap = s;
+        }
+
     }
 }
 

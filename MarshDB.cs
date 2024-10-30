@@ -16,7 +16,6 @@ namespace MarshDatabase {
             string ShowClaimsQuery = "SELECT ClaimName, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim";
             string ShowFarmsQuery = "SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey";
 
-
             SqlCommand showNameCmd = new SqlCommand(ShowPlayerQuery, sqlConnection);
             SqlCommand showClaimsCmd = new SqlCommand(ShowClaimsQuery, sqlConnection);
             SqlCommand showFarmCmd = new SqlCommand(ShowFarmsQuery, sqlConnection);
@@ -38,7 +37,7 @@ namespace MarshDatabase {
 
             } finally { sqlConnection.Close(); }
 
-            NameSelect.DataSource = nameSelectOutput;
+            PlayerSelect.DataSource = nameSelectOutput;
 
             ClaimSelect.Columns.Add("ClaimName", "Claim Name");
             ClaimSelect.Columns.Add("ClaimLocation", "Cords");
@@ -61,7 +60,7 @@ namespace MarshDatabase {
             FarmSelect.Columns.Add("AutomatedItem", "Automated Item");
             FarmSelect.Columns.Add("Location", "Cords");
 
-            for (int i=0; i < farmSelectOutput.Rows.Count;i++) {
+            for (int i = 0; i < farmSelectOutput.Rows.Count; i++) {
                 if (farmSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
                     FarmSelect.Rows.Add(
                      farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
@@ -77,7 +76,6 @@ namespace MarshDatabase {
                     );
                 }
             }
-            NameSelect.Rows[0].Selected = true;
         }
 
         private void ShowPlayerData(object sender, EventArgs e) {
@@ -97,7 +95,7 @@ namespace MarshDatabase {
 
             } finally { sqlConnection.Close(); }
 
-            NameSelect.DataSource = searchResults;
+            PlayerSelect.DataSource = searchResults;
         }
         private void ClaimSearchChanged(object sender, EventArgs e) {
             ClaimSelect.Rows.Clear();

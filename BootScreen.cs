@@ -21,11 +21,12 @@ namespace MarshDatabase {
                 marshDB = new MarshDB();
                 marshDB.ShowDialog();
             });
+
             Application.Idle += ApplicationIdle;
             BootThread.Start();
         }
         public void EstablishDBConn() {
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             StatusLabelText = "Connecting to Database...";
             while (true) {
                 try {
@@ -33,7 +34,7 @@ namespace MarshDatabase {
                     sqlConnection.Close();
                     break;
                 } catch (Exception) {
-                    StatusLabelText = "Database Offline\nBooting Database...";
+                    StatusLabelText = "Database Offline\n Booting Database...";
                 }
             }
             StatusLabelText = "Connection Established.";
@@ -41,12 +42,12 @@ namespace MarshDatabase {
 
         private void ApplicationIdle(object sender, EventArgs e) {
             BootStatusLabel.Text = StatusLabelText;
-            if (BootStatusLabel.Text == "Connection Established.") { 
-                bootScreen.Close();
+            if (BootStatusLabel.Text == "Connection Established.") {
+                this.Close();
             }
         }
         private void BootStatusLabel_Click(object sender, EventArgs e) {
-            EasterEggLabel.Text = "Congrats you found an easter egg! (ping lava and say balls, dont tell him and share the easter egg)";
+            EasterEggLabel.Text = "Congrats you found an easter egg! (ping lava and say \"SCOOPY DOOBY DOO!!!\", dont tell him and share the easter egg)";
         }
     }
 }

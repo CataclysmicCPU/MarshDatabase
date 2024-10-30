@@ -1,4 +1,7 @@
-﻿namespace MarshDatabase {
+﻿using System;
+using System.Windows.Forms;
+
+namespace MarshDatabase {
     partial class MarshDB {
 
         private System.ComponentModel.IContainer components = null;
@@ -9,6 +12,31 @@
             }
             base.Dispose(disposing);
         }
+
+        private System.Windows.Forms.TabPage Players;
+        private System.Windows.Forms.TabPage Claims;
+        private System.Windows.Forms.TabPage Farms;
+        private System.Windows.Forms.SplitContainer SearchSeperator;
+        private System.Windows.Forms.TextBox SearchBox;
+        private System.Windows.Forms.TabControl MainDataTabSelect;
+        private System.Windows.Forms.TabPage SearchMembersSelect;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TextBox PlayerSearch;
+        private System.Windows.Forms.DataGridView PlayerSelect;
+        private System.Windows.Forms.TabPage SearchClaimsSelect;
+        private System.Windows.Forms.TextBox ClaimsSearchBox;
+        private System.Windows.Forms.SplitContainer PlayerViewSeperator;
+        private System.Windows.Forms.TabControl ViewSwapper;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView ClaimSelect;
+        private System.Windows.Forms.TabPage SearchFarmsSelect;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.TextBox FarmSearchBox;
+        private System.Windows.Forms.DataGridView FarmSelect;
+        private IFarmView FarmView;
+        private IPlayerView PlayerView;
+        private IClaimView ClaimView;
 
         private void InitializeComponent() {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -21,33 +49,34 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarshDB));
+            string fontFamily = Program.fontFamily;
             this.MainDataTabSelect = new System.Windows.Forms.TabControl();
             this.SearchMembersSelect = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.PlayerSearch = new System.Windows.Forms.TextBox();
-            this.NameSelect = new System.Windows.Forms.DataGridView();
+            this.PlayerSelect = new System.Windows.Forms.DataGridView();
             this.SearchClaimsSelect = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ClaimsSearchBox = new System.Windows.Forms.TextBox();
             this.ClaimSelect = new System.Windows.Forms.DataGridView();
             this.PlayerViewSeperator = new System.Windows.Forms.SplitContainer();
-            this.ViewSwapper = new System.Windows.Forms.TabControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SearchFarmsSelect = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.FarmSearchBox = new System.Windows.Forms.TextBox();
             this.FarmSelect = new System.Windows.Forms.DataGridView();
-            this.playerSwapName = "";
-            this.ClaimView = new ClaimView(ClaimSelect, ViewSwapper, playerSwapName);
-            this.PlayerView = new PlayerView(NameSelect, ViewSwapper, playerSwapName);
-            this.FarmView = new FarmView(FarmSelect, ViewSwapper, playerSwapName);
+            this.ViewSwapper = new System.Windows.Forms.TabControl();
+            this.FarmView = new FarmView(FarmSelect, ViewSwapper);
+            this.ClaimView = new ClaimView(ClaimSelect, ViewSwapper);
+            this.PlayerView = new PlayerView(PlayerSelect, ViewSwapper);
+
             this.MainDataTabSelect.SuspendLayout();
             this.SearchMembersSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerSelect)).BeginInit();
             this.SearchClaimsSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -97,6 +126,7 @@
             this.splitContainer2.Location = new System.Drawing.Point(3, 3);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer2.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F); 
             // 
             // splitContainer2.Panel1
             // 
@@ -104,7 +134,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.NameSelect);
+            this.splitContainer2.Panel2.Controls.Add(this.PlayerSelect);
             this.splitContainer2.Size = new System.Drawing.Size(117, 545);
             this.splitContainer2.SplitterDistance = 26;
             this.splitContainer2.TabIndex = 1;
@@ -120,52 +150,52 @@
             // 
             // NameSelect
             // 
-            this.NameSelect.AllowUserToAddRows = false;
-            this.NameSelect.AllowUserToDeleteRows = false;
-            this.NameSelect.AllowUserToResizeColumns = false;
-            this.NameSelect.AllowUserToResizeRows = false;
-            this.NameSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.NameSelect.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PlayerSelect.AllowUserToAddRows = false;
+            this.PlayerSelect.AllowUserToDeleteRows = false;
+            this.PlayerSelect.AllowUserToResizeColumns = false;
+            this.PlayerSelect.AllowUserToResizeRows = false;
+            this.PlayerSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.PlayerSelect.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.NameSelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.NameSelect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.NameSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PlayerSelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.PlayerSelect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PlayerSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.NameSelect.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NameSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NameSelect.Location = new System.Drawing.Point(0, 0);
-            this.NameSelect.MultiSelect = false;
-            this.NameSelect.Name = "NameSelect";
-            this.NameSelect.ReadOnly = true;
+            this.PlayerSelect.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PlayerSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PlayerSelect.Location = new System.Drawing.Point(0, 0);
+            this.PlayerSelect.MultiSelect = false;
+            this.PlayerSelect.Name = "NameSelect";
+            this.PlayerSelect.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.NameSelect.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.NameSelect.RowHeadersVisible = false;
-            this.NameSelect.RowHeadersWidth = 65;
-            this.NameSelect.RowTemplate.Height = 24;
-            this.NameSelect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.NameSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.NameSelect.ShowEditingIcon = false;
-            this.NameSelect.Size = new System.Drawing.Size(117, 515);
-            this.NameSelect.TabIndex = 0;
-            this.NameSelect.SelectionChanged += PlayerView.ShowPlayerData;
+            this.PlayerSelect.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.PlayerSelect.RowHeadersVisible = false;
+            this.PlayerSelect.RowHeadersWidth = 65;
+            this.PlayerSelect.RowTemplate.Height = 24;
+            this.PlayerSelect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.PlayerSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.PlayerSelect.ShowEditingIcon = false;
+            this.PlayerSelect.Size = new System.Drawing.Size(117, 515);
+            this.PlayerSelect.TabIndex = 0;
+            this.PlayerSelect.SelectionChanged += PlayerView.ShowPlayerData;
             // 
             // SearchClaimsSelect
             // 
@@ -215,7 +245,7 @@
             this.ClaimSelect.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -225,7 +255,7 @@
             this.ClaimSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -238,7 +268,7 @@
             this.ClaimSelect.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -270,7 +300,7 @@
             // 
             this.PlayerViewSeperator.Panel2.Controls.Add(this.ViewSwapper);
             this.PlayerViewSeperator.Size = new System.Drawing.Size(877, 580);
-            this.PlayerViewSeperator.SplitterDistance = 131;
+            this.PlayerViewSeperator.SplitterDistance = 180;
             this.PlayerViewSeperator.TabIndex = 2;
             // 
             // ViewSwapper
@@ -286,6 +316,7 @@
             this.ViewSwapper.SelectedIndex = 0;
             this.ViewSwapper.Size = new System.Drawing.Size(742, 580);
             this.ViewSwapper.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.ViewSwapper.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewSwapper.TabIndex = 0;
             // 
             // textBox1
@@ -343,7 +374,7 @@
             this.FarmSelect.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -353,7 +384,7 @@
             this.FarmSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -366,7 +397,7 @@
             this.FarmSelect.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font(fontFamily, 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -399,7 +430,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NameSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerSelect)).EndInit();
             this.SearchClaimsSelect.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -420,32 +451,51 @@
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FarmSelect)).EndInit();
             this.ResumeLayout(false);
-
+            Application.Idle += ApplicationIdle;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
         }
-        private string playerSwapName;
-        private System.Windows.Forms.TabPage Players;
-        private System.Windows.Forms.TabPage Claims;
-        private System.Windows.Forms.TabPage Farms;
-        private System.Windows.Forms.SplitContainer SearchSeperator;
-        private System.Windows.Forms.TextBox SearchBox;
-        private System.Windows.Forms.TabControl MainDataTabSelect;
-        private System.Windows.Forms.TabPage SearchMembersSelect;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TextBox PlayerSearch;
-        private System.Windows.Forms.DataGridView NameSelect;
-        private System.Windows.Forms.TabPage SearchClaimsSelect;
-        private System.Windows.Forms.TextBox ClaimsSearchBox;
-        private System.Windows.Forms.SplitContainer PlayerViewSeperator;
-        private System.Windows.Forms.TabControl ViewSwapper;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView ClaimSelect;
-        private System.Windows.Forms.TabPage SearchFarmsSelect;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.TextBox FarmSearchBox;
-        private System.Windows.Forms.DataGridView FarmSelect;
-        private IFarmView FarmView;
-        private IPlayerView PlayerView;
-        private IClaimView ClaimView;
+
+        private void ApplicationIdle(object sender, EventArgs e) {
+            if (FarmView.getPlayerSwapName() != null || ClaimView.getPlayerSwapName() != null) {
+                SwapToPlayer();
+            }
+            if (FarmView.getClaimSwapName() != null || PlayerView.GetClaimSwapName() != null) {
+                SwapToClaim();
+            }
+            if (PlayerView.GetFarmNameSwap() != null) {
+                SwapToFarm();
+            }
+        }
+
+        private void SwapToPlayer() {
+            foreach (DataGridViewRow row in PlayerSelect.Rows) {
+                if (row.Cells[0].Value.ToString() == FarmView.getPlayerSwapName() || row.Cells[0].Value.ToString() == ClaimView.getPlayerSwapName()) { PlayerSelect.Rows[row.Index].Selected = true; }
+            }
+            ViewSwapper.SelectedIndex = 0;
+            FarmView.setPlayerSwapName(null);
+            ClaimView.setPlayerSwapName(null);
+        }
+
+        private void SwapToClaim() {
+            foreach (DataGridViewRow row in ClaimSelect.Rows) {
+                if (row.Cells[0].Value.ToString() == FarmView.getClaimSwapName() || row.Cells[0].Value.ToString() == PlayerView.GetClaimSwapName()) {
+                    ClaimSelect.Rows[row.Index].Selected = true;
+                }
+            }
+            FarmView.setClaimSwapName(null);
+            PlayerView.SetClaimNameSwap(null);
+            ViewSwapper.SelectedIndex = 1;
+        }
+
+        private void SwapToFarm() {
+            foreach (DataGridViewRow row in FarmSelect.Rows) {
+                if (row.Cells[0].Value.ToString() == PlayerView.GetFarmNameSwap()) {
+                    FarmSelect.Rows[row.Index].Selected = true;
+                }
+            }
+            this.PlayerView.SetFarmNameSwap(null);
+            ViewSwapper.SelectedIndex = 2;
+        }
     }
 }

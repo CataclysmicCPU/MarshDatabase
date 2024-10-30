@@ -11,12 +11,16 @@ using static MarshDatabase.Program;
 namespace MarshDatabase {
     public interface IFarmView {
         void ShowFarmData(object sender, EventArgs e);
+        string getClaimSwapName();
+        string getPlayerSwapName();
+        void setPlayerSwapName(string s);
+        void setClaimSwapName(string s);
     }
     internal class FarmView : TabPage, IFarmView {
-        public FarmView(DataGridView FarmSelectPass, TabControl ViewSwapperPass, string playerSwapName) {
-            this.playerSwapName = playerSwapName;
+        public FarmView(DataGridView FarmSelectPass, TabControl ViewSwapperPass) {
             FarmSelect = FarmSelectPass;
             ViewSwapper = ViewSwapperPass;
+            string fontFamily = Program.fontFamily;
             System.Windows.Forms.SplitContainer splitContainer1;
             System.Windows.Forms.SplitContainer splitContainer2;
             System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -117,7 +121,7 @@ namespace MarshDatabase {
             // AutomatedItemLabel
             // 
             this.AutomatedItemLabel.AutoSize = true;
-            this.AutomatedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutomatedItemLabel.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AutomatedItemLabel.Location = new System.Drawing.Point(3, 0);
             this.AutomatedItemLabel.Name = "AutomatedItemLabel";
             this.AutomatedItemLabel.Size = new System.Drawing.Size(181, 32);
@@ -127,7 +131,7 @@ namespace MarshDatabase {
             // InputItemsLabel
             // 
             this.InputItemsLabel.AutoSize = true;
-            this.InputItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InputItemsLabel.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InputItemsLabel.Location = new System.Drawing.Point(3, 32);
             this.InputItemsLabel.Name = "InputItemsLabel";
             this.InputItemsLabel.Size = new System.Drawing.Size(181, 128);
@@ -168,7 +172,7 @@ namespace MarshDatabase {
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label1.Location = new System.Drawing.Point(3, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(179, 25);
@@ -178,18 +182,19 @@ namespace MarshDatabase {
             // ShellClaimLabel
             // 
             this.ShellClaimLabel.AutoSize = true;
-            this.ShellClaimLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShellClaimLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShellClaimLabel.Location = new System.Drawing.Point(3, 25);
             this.ShellClaimLabel.Name = "ShellClaimLabel";
             this.ShellClaimLabel.Size = new System.Drawing.Size(195, 38);
             this.ShellClaimLabel.TabIndex = 1;
             this.ShellClaimLabel.TabStop = true;
             this.ShellClaimLabel.Text = "PlaceHolder\r\n";
+            this.ShellClaimLabel.LinkClicked += SwapToClaim;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label2.Location = new System.Drawing.Point(3, 63);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(145, 25);
@@ -199,18 +204,19 @@ namespace MarshDatabase {
             // CreatorNameLabel
             // 
             this.CreatorNameLabel.AutoSize = true;
-            this.CreatorNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatorNameLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreatorNameLabel.Location = new System.Drawing.Point(3, 88);
             this.CreatorNameLabel.Name = "CreatorNameLabel";
             this.CreatorNameLabel.Size = new System.Drawing.Size(195, 38);
             this.CreatorNameLabel.TabIndex = 3;
             this.CreatorNameLabel.TabStop = true;
             this.CreatorNameLabel.Text = "PlaceHolder\r\n";
+            this.CreatorNameLabel.LinkClicked += this.SwapToPlayer;
             // 
             // DatesDisplayLabel
             // 
             this.DatesDisplayLabel.AutoSize = true;
-            this.DatesDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatesDisplayLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatesDisplayLabel.Location = new System.Drawing.Point(2, 0);
             this.DatesDisplayLabel.Name = "DatesDisplayLabel";
             this.DatesDisplayLabel.Size = new System.Drawing.Size(220, 190);
@@ -218,11 +224,12 @@ namespace MarshDatabase {
             this.DatesDisplayLabel.Text = "DateCreated: \r\nPlaceHolder\r\n\r\nDate Deleted:\r\nPlaceHolder";
             //
             //FarmLocationLabel
+            //
             this.FarmLocationLabel.AutoSize = true;
-            this.FarmLocationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmLocationLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FarmLocationLabel.Location = new System.Drawing.Point(2, 0);
             this.FarmLocationLabel.Name = "FarmLocationLabel";
-            this.FarmLocationLabel.Size = new System.Drawing.Size(220,190);
+            this.FarmLocationLabel.Size = new System.Drawing.Size(220, 190);
             this.FarmLocationLabel.TabIndex = 0;
             this.FarmLocationLabel.Text = "\nFarm Location: \nPlaceHolder";
             //
@@ -258,7 +265,8 @@ namespace MarshDatabase {
             Text = "FarmView";
             UseVisualStyleBackColor = true;
         }
-        private string playerSwapName;
+        public string claimSwapName;
+        public string playerSwapName;
         private System.Windows.Forms.DataGridView FarmSelect;
         private System.Windows.Forms.TabControl ViewSwapper;
         private System.Windows.Forms.PictureBox FarmImage;
@@ -272,10 +280,8 @@ namespace MarshDatabase {
         void IFarmView.ShowFarmData(object sender, EventArgs e) {
             if (FarmSelect.SelectedCells.Count > 0) {
 
-
-
                 int selectedRowIndex = FarmSelect.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = FarmSelect.Rows[selectedRowIndex];
+                DataGridViewRow selectedRow = FarmSelect.Rows[FarmSelect.SelectedCells[0].RowIndex];
                 string farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
 
                 string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem3, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
@@ -297,7 +303,7 @@ namespace MarshDatabase {
                 ShellClaimLabel.Text = farmTable.Rows[0].Field<string>("ClaimName");
                 CreatorNameLabel.Text = farmTable.Rows[0].Field<string>("InGameName");
                 DatesDisplayLabel.Text = "Date Created:\n " + farmTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
-                
+
                 if (farmTable.Rows[0].Field<DateTime?>("DateRemoved") != null) {
                     DatesDisplayLabel.Text += "\nDate Removed: \n" + farmTable.Rows[0].Field<DateTime>("DateRemoved").ToString("M/d/yyyy");
                 }
@@ -325,9 +331,26 @@ namespace MarshDatabase {
                     (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
                 }
-
                 ViewSwapper.SelectedIndex = 2;
             }
+        }
+        string IFarmView.getPlayerSwapName() {
+            return playerSwapName;
+        }
+        string IFarmView.getClaimSwapName() {
+            return claimSwapName;
+        }
+        void IFarmView.setPlayerSwapName(string s) {
+            playerSwapName = s;
+        }
+        void IFarmView.setClaimSwapName(string s) {
+            claimSwapName = s;
+        }
+        void SwapToPlayer(object sender, EventArgs e) {
+            playerSwapName = CreatorNameLabel.Text;
+        }
+        void SwapToClaim(object sender, EventArgs e) {
+            claimSwapName = ShellClaimLabel.Text;
         }
     }
 }
