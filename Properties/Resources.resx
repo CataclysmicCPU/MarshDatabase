@@ -121,4 +121,10 @@
   <data name="MarshLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\MarshLogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RubikBubbles_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RubikBubbles-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Rubik_VariableFont_wght" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rubik-VariableFont_wght.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

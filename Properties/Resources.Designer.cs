@@ -69,5 +69,25 @@ namespace MarshDatabase.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Rubik_VariableFont_wght {
+            get {
+                object obj = ResourceManager.GetObject("Rubik_VariableFont_wght", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RubikBubbles_Regular {
+            get {
+                object obj = ResourceManager.GetObject("RubikBubbles_Regular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

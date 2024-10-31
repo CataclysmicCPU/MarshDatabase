@@ -239,6 +239,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Rubik-VariableFont_wght.ttf" />
+    <None Include="Resources\RubikBubbles-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

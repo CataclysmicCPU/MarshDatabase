@@ -12,6 +12,8 @@ namespace MarshDatabase {
             DarkModeCS DM = new DarkModeCS(this);
             DM.ApplyTheme(true);
 
+
+
             string ShowPlayerQuery = "SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member";
             string ShowClaimsQuery = "SELECT ClaimName, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim";
             string ShowFarmsQuery = "SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey";
@@ -128,6 +130,18 @@ namespace MarshDatabase {
                     (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
                     );
                 }
+            }
+        }
+        public void ClearSelction(object sender, EventArgs e) { 
+            PlayerSelect.ClearSelection();
+            ClaimSelect.ClearSelection();
+            FarmSelect.ClearSelection();
+        }
+        protected override CreateParams CreateParams {
+            get {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle &= ~0x02000000;  
+                return cp;
             }
         }
     }
