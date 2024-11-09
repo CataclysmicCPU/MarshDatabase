@@ -30,14 +30,14 @@
         {
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label Label2;
             System.Windows.Forms.PictureBox pictureBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootScreen));
             this.BootStatusLabel = new System.Windows.Forms.Label();
             this.EasterEggLabel = new System.Windows.Forms.Label();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            label2 = new System.Windows.Forms.Label();
+            Label2 = new System.Windows.Forms.Label();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -60,13 +60,12 @@
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             tableLayoutPanel1.Size = new System.Drawing.Size(901, 662);
-            tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(label2, 0, 0);
+            tableLayoutPanel2.Controls.Add(Label2, 0, 0);
             tableLayoutPanel2.Controls.Add(pictureBox1, 0, 1);
             tableLayoutPanel2.Controls.Add(this.BootStatusLabel, 0, 2);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,19 +77,19 @@
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.81633F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.36735F));
             tableLayoutPanel2.Size = new System.Drawing.Size(534, 391);
-            tableLayoutPanel2.TabIndex = 0;
             // 
-            // label2
+            // Label2
             // 
-            label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(3, 9);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(528, 42);
-            label2.TabIndex = 2;
-            label2.Text = "Marsh Database System";
-            label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            Label2.AutoSize = true;
+            Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            Label2.Location = new System.Drawing.Point(3, 9);
+            Label2.Name = "Label2";
+            Label2.Size = new System.Drawing.Size(528, 42);
+            Label2.TabIndex = 2;
+            Label2.Text = "Marsh Database System";
+            Label2.BackColor = this.BackColor;
+            Label2.TextAlign = (System.Drawing.ContentAlignment)System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -100,7 +99,6 @@
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(528, 252);
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // BootStatusLabel
@@ -112,8 +110,9 @@
             this.BootStatusLabel.Name = "BootStatusLabel";
             this.BootStatusLabel.Size = new System.Drawing.Size(528, 38);
             this.BootStatusLabel.TabIndex = 1;
+            this.BootStatusLabel.BackColor = this.BackColor;
             this.BootStatusLabel.Text = "Booting...";
-            this.BootStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BootStatusLabel.TextAlign = (System.Drawing.ContentAlignment)System.Windows.Forms.HorizontalAlignment.Center;
             this.BootStatusLabel.Click += new System.EventHandler(this.BootStatusLabel_Click);
             // 
             // EasterEggLabel
@@ -121,6 +120,7 @@
             this.EasterEggLabel.AutoSize = true;
             this.EasterEggLabel.Location = new System.Drawing.Point(3, 529);
             this.EasterEggLabel.Name = "EasterEggLabel";
+            this.EasterEggLabel.BackColor = this.BackColor;
             this.EasterEggLabel.Size = new System.Drawing.Size(0, 16);
             this.EasterEggLabel.TabIndex = 1;
             // 

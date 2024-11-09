@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,28 +22,27 @@ namespace MarshDatabase {
         public FarmView(DataGridView FarmSelectPass, TabControl ViewSwapperPass) {
             FarmSelect = FarmSelectPass;
             ViewSwapper = ViewSwapperPass;
-            string fontFamily = Program.fontFamily;
             System.Windows.Forms.SplitContainer splitContainer1;
             System.Windows.Forms.SplitContainer splitContainer2;
             System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
             System.Windows.Forms.SplitContainer splitContainer3;
             System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label2;
+            System.Windows.Forms.TextBox TextBox1;
+            System.Windows.Forms.TextBox TextBox2;
             this.FarmImage = new System.Windows.Forms.PictureBox();
-            this.AutomatedItemLabel = new System.Windows.Forms.Label();
-            this.InputItemsLabel = new System.Windows.Forms.Label();
-            this.ShellClaimLabel = new System.Windows.Forms.LinkLabel();
-            this.CreatorNameLabel = new System.Windows.Forms.LinkLabel();
-            this.DatesDisplayLabel = new System.Windows.Forms.Label();
-            this.FarmLocationLabel = new System.Windows.Forms.Label();
+            this.AutomatedItemTextBox = new System.Windows.Forms.TextBox();
+            this.InputItemsTextBox = new System.Windows.Forms.TextBox();
+            this.ShellClaimTextBox = new System.Windows.Forms.LinkLabel();
+            this.CreatorNameTextBox = new System.Windows.Forms.LinkLabel();
+            this.DatesDisplayTextBox = new System.Windows.Forms.TextBox();
+            this.FarmLocationTextBox = new System.Windows.Forms.TextBox();
             splitContainer1 = new System.Windows.Forms.SplitContainer();
             splitContainer2 = new System.Windows.Forms.SplitContainer();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             splitContainer3 = new System.Windows.Forms.SplitContainer();
             flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
+            TextBox1 = new System.Windows.Forms.TextBox();
+            TextBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(splitContainer1)).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -73,8 +74,7 @@ namespace MarshDatabase {
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer3);
             splitContainer1.Size = new System.Drawing.Size(1121, 664);
-            splitContainer1.SplitterDistance = 278;
-            splitContainer1.TabIndex = 0;
+            splitContainer1.SplitterDistance = 378;
             // 
             // splitContainer2
             // 
@@ -92,8 +92,7 @@ namespace MarshDatabase {
             // 
             splitContainer2.Panel2.Controls.Add(flowLayoutPanel1);
             splitContainer2.Size = new System.Drawing.Size(278, 664);
-            splitContainer2.SplitterDistance = 278;
-            splitContainer2.TabIndex = 0;
+            splitContainer2.SplitterDistance = 372;
             // 
             // FarmImage
             // 
@@ -104,39 +103,41 @@ namespace MarshDatabase {
             this.FarmImage.Name = "FarmImage";
             this.FarmImage.Size = new System.Drawing.Size(278, 278);
             this.FarmImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.FarmImage.TabIndex = 0;
             this.FarmImage.TabStop = false;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(this.AutomatedItemLabel);
-            flowLayoutPanel1.Controls.Add(this.InputItemsLabel);
+            flowLayoutPanel1.Controls.Add(this.AutomatedItemTextBox);
+            flowLayoutPanel1.Controls.Add(this.InputItemsTextBox);
             flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new System.Drawing.Size(278, 382);
-            flowLayoutPanel1.TabIndex = 0;
             // 
-            // AutomatedItemLabel
+            // AutomatedItemTextBox
             // 
-            this.AutomatedItemLabel.AutoSize = true;
-            this.AutomatedItemLabel.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AutomatedItemLabel.Location = new System.Drawing.Point(3, 0);
-            this.AutomatedItemLabel.Name = "AutomatedItemLabel";
-            this.AutomatedItemLabel.Size = new System.Drawing.Size(181, 32);
-            this.AutomatedItemLabel.TabIndex = 0;
-            this.AutomatedItemLabel.Text = "PlaceHolder";
+            this.AutomatedItemTextBox.AutoSize = true;
+            this.AutomatedItemTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutomatedItemTextBox.Location = new System.Drawing.Point(3, 0);
+            this.AutomatedItemTextBox.Name = "AutomatedItemTextBox";
+            this.AutomatedItemTextBox.Size = new System.Drawing.Size(500, 64);
+            this.AutomatedItemTextBox.ReadOnly = true;
+            this.AutomatedItemTextBox.Multiline = true;
+            this.AutomatedItemTextBox.WordWrap = true;
+            this.AutomatedItemTextBox.Text = "PlaceHolder";
             // 
-            // InputItemsLabel
+            // InputItemsTextBox
             // 
-            this.InputItemsLabel.AutoSize = true;
-            this.InputItemsLabel.Font = new System.Drawing.Font(fontFamily, 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InputItemsLabel.Location = new System.Drawing.Point(3, 32);
-            this.InputItemsLabel.Name = "InputItemsLabel";
-            this.InputItemsLabel.Size = new System.Drawing.Size(181, 128);
-            this.InputItemsLabel.TabIndex = 1;
-            this.InputItemsLabel.Text = "\r\nPlaceHolder\r\nPlaceHolder\r\nPlaceHolder";
+            this.InputItemsTextBox.AutoSize = true;
+            this.InputItemsTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InputItemsTextBox.Location = new System.Drawing.Point(3, 32);
+            this.InputItemsTextBox.Name = "InputItemsTextBox";
+            this.InputItemsTextBox.Size = new System.Drawing.Size(300, 128);
+            this.InputItemsTextBox.TabIndex = 1;
+            this.InputItemsTextBox.Multiline = true;
+            this.InputItemsTextBox.WordWrap= true;
+            this.InputItemsTextBox.Text = "\r\nPlaceHolder\r\nPlaceHolder\r\nPlaceHolder";
             // 
             // splitContainer3
             // 
@@ -150,88 +151,90 @@ namespace MarshDatabase {
             // 
             // splitContainer3.Panel2
             // 
-            splitContainer3.Panel2.Controls.Add(this.DatesDisplayLabel);
+            splitContainer3.Panel2.Controls.Add(this.DatesDisplayTextBox);
             splitContainer3.Size = new System.Drawing.Size(839, 664);
-            splitContainer3.SplitterDistance = 307;
-            splitContainer3.TabIndex = 0;
+            splitContainer3.SplitterDistance = 407;
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(label1);
-            flowLayoutPanel2.Controls.Add(this.ShellClaimLabel);
-            flowLayoutPanel2.Controls.Add(label2);
-            flowLayoutPanel2.Controls.Add(this.CreatorNameLabel);
-            flowLayoutPanel2.Controls.Add(this.FarmLocationLabel);
+            flowLayoutPanel2.Controls.Add(TextBox1);
+            flowLayoutPanel2.Controls.Add(this.ShellClaimTextBox);
+            flowLayoutPanel2.Controls.Add(TextBox2);
+            flowLayoutPanel2.Controls.Add(this.CreatorNameTextBox);
+            flowLayoutPanel2.Controls.Add(this.FarmLocationTextBox);
             flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new System.Drawing.Size(307, 664);
-            flowLayoutPanel2.TabIndex = 0;
             // 
-            // label1
+            // TextBox1
             // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(179, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Shell Claim Name: ";
+            TextBox1.AutoSize = true;
+            TextBox1.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TextBox1.Location = new System.Drawing.Point(3, 0);
+            TextBox1.Name = "TextBox1";
+            TextBox1.Size = new System.Drawing.Size(179, 25);
+            TextBox1.ReadOnly = true;
+            TextBox1.Text = "Shell Claim Name: ";
             // 
-            // ShellClaimLabel
+            // ShellClaimTextBox
             // 
-            this.ShellClaimLabel.AutoSize = true;
-            this.ShellClaimLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShellClaimLabel.Location = new System.Drawing.Point(3, 25);
-            this.ShellClaimLabel.Name = "ShellClaimLabel";
-            this.ShellClaimLabel.Size = new System.Drawing.Size(195, 38);
-            this.ShellClaimLabel.TabIndex = 1;
-            this.ShellClaimLabel.TabStop = true;
-            this.ShellClaimLabel.Text = "PlaceHolder\r\n";
-            this.ShellClaimLabel.LinkClicked += SwapToClaim;
+            this.ShellClaimTextBox.AutoSize = true;
+            this.ShellClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShellClaimTextBox.Location = new System.Drawing.Point(3, 25);
+            this.ShellClaimTextBox.Name = "ShellClaimTextBox";
+            this.ShellClaimTextBox.Size = new System.Drawing.Size(300, 38);
+            this.ShellClaimTextBox.TabIndex = 1;
+            this.ShellClaimTextBox.TabStop = true;
+            this.ShellClaimTextBox.Text = "PlaceHolder\r\n";
+            this.ShellClaimTextBox.BackColor = this.BackColor;
+            this.ShellClaimTextBox.LinkClicked += SwapToClaim;
             // 
-            // label2
+            // TextBox2
             // 
-            label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font(fontFamily, 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(3, 63);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(145, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Creator Name: ";
+            TextBox2.AutoSize = true;
+            TextBox2.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TextBox2.Location = new System.Drawing.Point(3, 63);
+            TextBox2.Name = "TextBox2";
+            TextBox2.Size = new System.Drawing.Size(300, 25);
+            TextBox2.TabIndex = 2;
+            TextBox2.Text = "Creator Name: ";
             // 
-            // CreatorNameLabel
+            // CreatorNameTextBox
             // 
-            this.CreatorNameLabel.AutoSize = true;
-            this.CreatorNameLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatorNameLabel.Location = new System.Drawing.Point(3, 88);
-            this.CreatorNameLabel.Name = "CreatorNameLabel";
-            this.CreatorNameLabel.Size = new System.Drawing.Size(195, 38);
-            this.CreatorNameLabel.TabIndex = 3;
-            this.CreatorNameLabel.TabStop = true;
-            this.CreatorNameLabel.Text = "PlaceHolder\r\n";
-            this.CreatorNameLabel.LinkClicked += this.SwapToPlayer;
+            this.CreatorNameTextBox.AutoSize = true;
+            this.CreatorNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatorNameTextBox.Location = new System.Drawing.Point(3, 88);
+            this.CreatorNameTextBox.Name = "CreatorNameTextBox";
+            this.CreatorNameTextBox.Size = new System.Drawing.Size(300, 75);
+            this.CreatorNameTextBox.TabIndex = 3;
+            this.CreatorNameTextBox.TabStop = true;
+            this.CreatorNameTextBox.Text = "PlaceHolder\r\n";
+            this.CreatorNameTextBox.BackColor = this.BackColor;
+            this.CreatorNameTextBox.LinkClicked += this.SwapToPlayer;
             // 
-            // DatesDisplayLabel
+            // DatesDisplayTextBox
             // 
-            this.DatesDisplayLabel.AutoSize = true;
-            this.DatesDisplayLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatesDisplayLabel.Location = new System.Drawing.Point(2, 0);
-            this.DatesDisplayLabel.Name = "DatesDisplayLabel";
-            this.DatesDisplayLabel.Size = new System.Drawing.Size(220, 190);
-            this.DatesDisplayLabel.TabIndex = 0;
-            this.DatesDisplayLabel.Text = "DateCreated: \r\nPlaceHolder\r\n\r\nDate Deleted:\r\nPlaceHolder";
+            this.DatesDisplayTextBox.AutoSize = true;
+            this.DatesDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatesDisplayTextBox.Location = new System.Drawing.Point(2, 0);
+            this.DatesDisplayTextBox.Name = "DatesDisplayTextBox";
+            this.DatesDisplayTextBox.Size = new System.Drawing.Size(350, 190);
+            this.DatesDisplayTextBox.ReadOnly = true;
+            this.DatesDisplayTextBox.Multiline = true;
+            this.DatesDisplayTextBox.WordWrap = true;
+            this.DatesDisplayTextBox.Text = "DateCreated: \r\nPlaceHolder\r\n\r\nDate Deleted:\r\nPlaceHolder";
             //
-            //FarmLocationLabel
+            //FarmLocationTextBox
             //
-            this.FarmLocationLabel.AutoSize = true;
-            this.FarmLocationLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FarmLocationLabel.Location = new System.Drawing.Point(2, 0);
-            this.FarmLocationLabel.Name = "FarmLocationLabel";
-            this.FarmLocationLabel.Size = new System.Drawing.Size(220, 190);
-            this.FarmLocationLabel.TabIndex = 0;
-            this.FarmLocationLabel.Text = "\nFarm Location: \nPlaceHolder";
+            this.FarmLocationTextBox.AutoSize = true;
+            this.FarmLocationTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmLocationTextBox.Location = new System.Drawing.Point(2, 0);
+            this.FarmLocationTextBox.Name = "FarmLocationTextBox";
+            this.FarmLocationTextBox.Size = new System.Drawing.Size(500, 190);
+            this.FarmLocationTextBox.ReadOnly = true;
+            this.FarmLocationTextBox.Text = "\nFarm Location: \nPlaceHolder";
             //
             // 
             // Form1
@@ -270,12 +273,12 @@ namespace MarshDatabase {
         private System.Windows.Forms.DataGridView FarmSelect;
         private System.Windows.Forms.TabControl ViewSwapper;
         private System.Windows.Forms.PictureBox FarmImage;
-        private System.Windows.Forms.Label AutomatedItemLabel;
-        private System.Windows.Forms.Label InputItemsLabel;
-        private System.Windows.Forms.LinkLabel ShellClaimLabel;
-        private System.Windows.Forms.LinkLabel CreatorNameLabel;
-        private System.Windows.Forms.Label DatesDisplayLabel;
-        private System.Windows.Forms.Label FarmLocationLabel;
+        private System.Windows.Forms.TextBox AutomatedItemTextBox;
+        private System.Windows.Forms.TextBox InputItemsTextBox;
+        private System.Windows.Forms.LinkLabel ShellClaimTextBox;
+        private System.Windows.Forms.LinkLabel CreatorNameTextBox;
+        private System.Windows.Forms.TextBox DatesDisplayTextBox;
+        private System.Windows.Forms.TextBox FarmLocationTextBox;
 
         void IFarmView.ShowFarmData(object sender, EventArgs e) {
             if (FarmSelect.SelectedCells.Count > 0) {
@@ -284,7 +287,7 @@ namespace MarshDatabase {
                 DataGridViewRow selectedRow = FarmSelect.Rows[FarmSelect.SelectedCells[0].RowIndex];
                 string farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
 
-                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem3, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
+                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem3, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved, Picture FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
 
                 SqlCommand sqlCommand = new SqlCommand(farmQuery, sqlConnection);
 
@@ -296,40 +299,53 @@ namespace MarshDatabase {
                     sqlConnection.Open();
                     adapter.Fill(farmTable);
                 } catch (Exception ex) {
-                    AutomatedItemLabel.Text = "An error occured, please contact CataclysmicCPU and give him this error message: " + ex.Message;
+                    AutomatedItemTextBox.Text = "An error occured, please contact CataclysmicCPU and give him this error message: " + ex.Message;
                 } finally { sqlConnection.Close(); }
 
-                AutomatedItemLabel.Text = "Automated Item: \n" + farmTable.Rows[0][0] + " " + farmTable.Rows[0][1] + "/h";
-                ShellClaimLabel.Text = farmTable.Rows[0].Field<string>("ClaimName");
-                CreatorNameLabel.Text = farmTable.Rows[0].Field<string>("InGameName");
-                DatesDisplayLabel.Text = "Date Created:\n " + farmTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
+                AutomatedItemTextBox.Text = "Automated Item: \r\n" + farmTable.Rows[0][0] + " " + farmTable.Rows[0][1] + "/h";
+                ShellClaimTextBox.Text = farmTable.Rows[0].Field<string>("ClaimName");
+                CreatorNameTextBox.Text = farmTable.Rows[0].Field<string>("InGameName");
+                DatesDisplayTextBox.Text = "Date Created:\r\n " + farmTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
 
                 if (farmTable.Rows[0].Field<DateTime?>("DateRemoved") != null) {
-                    DatesDisplayLabel.Text += "\nDate Removed: \n" + farmTable.Rows[0].Field<DateTime>("DateRemoved").ToString("M/d/yyyy");
+                    DatesDisplayTextBox.Text += "\r\nDate Removed: \r\n" + farmTable.Rows[0].Field<DateTime>("DateRemoved").ToString("M/d/yyyy");
                 }
 
                 if (farmTable.Rows[0].Field<string>("RequiredInputItem1") != null) {
-                    InputItemsLabel.Text = "\nRequired Input Items:\n" + farmTable.Rows[0].Field<string>("RequiredInputRate1") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem1") + "/h";
+                    InputItemsTextBox.Text = "\r\nRequired Input Items:\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate1") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem1") + "/h";
                 } else {
-                    InputItemsLabel.Text = "\nRequired Input Items:\nNone";
+                    InputItemsTextBox.Text = "\r\nRequired Input Items:\r\nNone";
                 }
                 if (farmTable.Rows[0].Field<string>("RequiredInputRate2") != null) {
-                    InputItemsLabel.Text = "\n" + farmTable.Rows[0].Field<string>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
+                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
                 }
                 if (farmTable.Rows[0].Field<string>("RequiredInputRate3") != null) {
-                    InputItemsLabel.Text = "\n" + farmTable.Rows[0].Field<string>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
+                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
                 }
 
                 if (farmTable.Rows[0].Field<int?>("SECornerY") == null) {
 
-                    FarmLocationLabel.Text = "\nClaim Center:\n" +
+                    FarmLocationTextBox.Text = "\r\nClaim Center:\r\n" +
                     (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
                 } else {
-                    FarmLocationLabel.Text = "\nClaim Center:\n" +
+                    FarmLocationTextBox.Text = "\r\nClaim Center:\r\n" +
                     (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                }
+                try {
+                    var imageData = farmTable.Rows[0].Field<byte[]>("Picture");
+                    if (imageData != null) {
+                        using (var ms = new MemoryStream(imageData, 0, imageData.Length)) {
+                            ms.Write(imageData, 0, imageData.Length);
+                            FarmImage.Image = Image.FromStream(ms);
+                        }
+                    } else {
+                        throw new Exception();
+                    }
+                } catch {
+                    FarmImage.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
                 }
                 ViewSwapper.SelectedIndex = 2;
             }
@@ -347,10 +363,10 @@ namespace MarshDatabase {
             claimSwapName = s;
         }
         void SwapToPlayer(object sender, EventArgs e) {
-            playerSwapName = CreatorNameLabel.Text;
+            playerSwapName = CreatorNameTextBox.Text;
         }
         void SwapToClaim(object sender, EventArgs e) {
-            claimSwapName = ShellClaimLabel.Text;
+            claimSwapName = ShellClaimTextBox.Text;
         }
     }
 }

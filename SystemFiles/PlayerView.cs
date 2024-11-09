@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Security.RightsManagement;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
@@ -34,15 +35,15 @@ namespace MarshDatabase {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.QuitReasonLabel = new System.Windows.Forms.Label();
-            this.JoinDateLabel = new System.Windows.Forms.Label();
-            this.PlayerInfoLabel = new System.Windows.Forms.Label();
-            this.QuitDateLabel = new System.Windows.Forms.Label();
+            this.QuitReasonTextBox = new System.Windows.Forms.TextBox();
+            this.JoinDateTextBox = new System.Windows.Forms.TextBox();
+            this.PlayerInfoTextBox = new System.Windows.Forms.TextBox();
+            this.QuitDateTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.DiscordNameDisplay = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.FlatnetNameDisplay = new System.Windows.Forms.Label();
+            this.DiscordNameDisplay = new System.Windows.Forms.TextBox();
+            this.TextBox2 = new System.Windows.Forms.TextBox();
+            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.FlatnetNameDisplay = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ClaimsSelect = new System.Windows.Forms.DataGridView();
             this.Claim = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,16 +97,15 @@ namespace MarshDatabase {
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(921, 360);
-            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.QuitReasonLabel, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.JoinDateLabel, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.PlayerInfoLabel, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.QuitDateLabel, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.QuitReasonTextBox, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.JoinDateTextBox, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.PlayerInfoTextBox, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.QuitDateTextBox, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(425, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -115,58 +115,59 @@ namespace MarshDatabase {
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(493, 354);
-            this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // QuitReasonLabel
+            // QuitReasonTextBox
             // 
-            this.QuitReasonLabel.AutoSize = true;
-            this.QuitReasonLabel.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuitReasonLabel.Location = new System.Drawing.Point(3, 169);
-            this.QuitReasonLabel.Name = "QuitReasonLabel";
-            this.QuitReasonLabel.Size = new System.Drawing.Size(138, 25);
-            this.QuitReasonLabel.TabIndex = 8;
-            this.QuitReasonLabel.Text = "Quit Reason:";
-            this.QuitReasonLabel.UseWaitCursor = true;
+            this.QuitReasonTextBox.AutoSize = true;
+            this.QuitReasonTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitReasonTextBox.Location = new System.Drawing.Point(3, 169);
+            this.QuitReasonTextBox.Name = "QuitReasonTextBox";
+            this.QuitReasonTextBox.Size = new System.Drawing.Size(535, 25);
+            this.QuitReasonTextBox.TabIndex = 8;
+            this.QuitReasonTextBox.Text = "Quit Reason:";
+            this.QuitReasonTextBox.Multiline = true;
+            this.QuitReasonTextBox.WordWrap = true;
+
             // 
-            // JoinDateLabel
+            // JoinDateTextBox
             // 
-            this.JoinDateLabel.AutoSize = true;
-            this.JoinDateLabel.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JoinDateLabel.Location = new System.Drawing.Point(3, 110);
-            this.JoinDateLabel.Name = "JoinDateLabel";
-            this.JoinDateLabel.Size = new System.Drawing.Size(111, 25);
-            this.JoinDateLabel.TabIndex = 7;
-            this.JoinDateLabel.Text = "Join Date:";
-            this.JoinDateLabel.UseWaitCursor = true;
+            this.JoinDateTextBox.AutoSize = true;
+            this.JoinDateTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JoinDateTextBox.Location = new System.Drawing.Point(3, 110);
+            this.JoinDateTextBox.Name = "JoinDateTextBox";
+            this.JoinDateTextBox.Size = new System.Drawing.Size(300, 25);
+            this.JoinDateTextBox.TabIndex = 7;
+            this.JoinDateTextBox.Text = "Join Date:";
             // 
-            // PlayerInfoLabel
+            // PlayerInfoTextBox
             // 
-            this.PlayerInfoLabel.AutoSize = true;
-            this.PlayerInfoLabel.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerInfoLabel.Location = new System.Drawing.Point(3, 0);
-            this.PlayerInfoLabel.Name = "PlayerInfoLabel";
-            this.PlayerInfoLabel.Size = new System.Drawing.Size(179, 25);
-            this.PlayerInfoLabel.TabIndex = 0;
-            this.PlayerInfoLabel.Text = "Player Info: None";
+            this.PlayerInfoTextBox.AutoSize = true;
+            this.PlayerInfoTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerInfoTextBox.Location = new System.Drawing.Point(3, 0);
+            this.PlayerInfoTextBox.Name = "PlayerInfoTextBox";
+            this.PlayerInfoTextBox.Size = new System.Drawing.Size(535, 100);
+            this.PlayerInfoTextBox.ReadOnly = true;
+            this.PlayerInfoTextBox.Text = "Player Info: None";
+            this.PlayerInfoTextBox.WordWrap = true;
+            this.PlayerInfoTextBox.Multiline = true;
             // 
-            // QuitDateLabel
+            // QuitDateTextBox
             // 
-            this.QuitDateLabel.AutoSize = true;
-            this.QuitDateLabel.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuitDateLabel.Location = new System.Drawing.Point(3, 136);
-            this.QuitDateLabel.Name = "QuitDateLabel";
-            this.QuitDateLabel.Size = new System.Drawing.Size(110, 25);
-            this.QuitDateLabel.TabIndex = 2;
-            this.QuitDateLabel.Text = "Quit Date:";
-            this.QuitDateLabel.UseWaitCursor = true;
+            this.QuitDateTextBox.AutoSize = true;
+            this.QuitDateTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitDateTextBox.Location = new System.Drawing.Point(3, 136);
+            this.QuitDateTextBox.Name = "QuitDateTextBox";
+            this.QuitDateTextBox.Size = new System.Drawing.Size(200, 25);
+            this.QuitDateTextBox.TabIndex = 2;
+            this.QuitDateTextBox.Text = "Quit Date:";
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.DiscordNameDisplay, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.TextBox2, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.TextBox1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.FlatnetNameDisplay, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
@@ -182,42 +183,45 @@ namespace MarshDatabase {
             // 
             // DiscordNameDisplay
             // 
-            this.DiscordNameDisplay.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscordNameDisplay.Font = new System.Drawing.Font(font.Families[0], 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiscordNameDisplay.Location = new System.Drawing.Point(3, 90);
             this.DiscordNameDisplay.Name = "DiscordNameDisplay";
-            this.DiscordNameDisplay.Size = new System.Drawing.Size(535, 50);
+            this.DiscordNameDisplay.Size = new System.Drawing.Size(300, 50);
             this.DiscordNameDisplay.TabIndex = 3;
             this.DiscordNameDisplay.Text = "PlaceHolder";
+            this.DiscordNameDisplay.ReadOnly = true;
+            this.DiscordNameDisplay.BorderStyle = 0;
+            this.DiscordNameDisplay.BackColor = this.BackColor;
+            this.DiscordNameDisplay.TabStop = false;
             // 
-            // label2
+            // TextBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font(font.Families[0], 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Discord Name: ";
+            this.TextBox2.AutoSize = true;
+            this.TextBox2.Font = new System.Drawing.Font(font.Families[0], 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox2.Location = new System.Drawing.Point(3, 70);
+            this.TextBox2.Name = "TextBox2";
+            this.TextBox2.Size = new System.Drawing.Size(127, 20);
+            this.TextBox2.TabIndex = 2;
+            this.TextBox2.Text = "Discord Name: ";
             // 
-            // label1
+            // TextBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font(font.Families[0], 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Flatnet Name: ";
+            this.TextBox1.AutoSize = true;
+            this.TextBox1.Font = new System.Drawing.Font(font.Families[0], 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox1.Location = new System.Drawing.Point(3, 0);
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Size = new System.Drawing.Size(119, 20);
+            this.TextBox1.ReadOnly = true;
+            this.TextBox1.Text = "Flatnet Name: ";
             // 
             // FlatnetNameDisplay
             // 
-            this.FlatnetNameDisplay.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FlatnetNameDisplay.Font = new System.Drawing.Font(font.Families[0], 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FlatnetNameDisplay.Location = new System.Drawing.Point(3, 20);
             this.FlatnetNameDisplay.Name = "FlatnetNameDisplay";
-            this.FlatnetNameDisplay.Size = new System.Drawing.Size(535, 50);
+            this.FlatnetNameDisplay.Size = new System.Drawing.Size(300, 50);
             this.FlatnetNameDisplay.TabIndex = 1;
             this.FlatnetNameDisplay.Text = "PlaceHolder";
-            this.FlatnetNameDisplay.UseCompatibleTextRendering = true;
             // 
             // tableLayoutPanel1
             // 
@@ -238,7 +242,6 @@ namespace MarshDatabase {
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(921, 288);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // ClaimsSelect
             // 
@@ -261,7 +264,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -276,7 +279,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -291,7 +294,7 @@ namespace MarshDatabase {
             this.ClaimsSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ClaimsSelect.ShowEditingIcon = false;
             this.ClaimsSelect.Size = new System.Drawing.Size(200, 258);
-            this.ClaimsSelect.TabIndex = 0;
+            this.ClaimsSelect.ReadOnly = true;
             this.ClaimsSelect.CellClick += SwapToClaim;
             // 
             // Claim
@@ -322,7 +325,7 @@ namespace MarshDatabase {
             this.FarmSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -337,7 +340,7 @@ namespace MarshDatabase {
             this.FarmSelect.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -383,7 +386,7 @@ namespace MarshDatabase {
             this.RolesTable.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -399,7 +402,7 @@ namespace MarshDatabase {
             this.RolesTable.RightToLeft = System.Windows.Forms.RightToLeft.No;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font(font.Families[0], 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -457,15 +460,15 @@ namespace MarshDatabase {
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label QuitReasonLabel;
-        private System.Windows.Forms.Label JoinDateLabel;
-        private System.Windows.Forms.Label PlayerInfoLabel;
-        private System.Windows.Forms.Label QuitDateLabel;
+        private System.Windows.Forms.TextBox QuitReasonTextBox;
+        private System.Windows.Forms.TextBox JoinDateTextBox;
+        private System.Windows.Forms.TextBox PlayerInfoTextBox;
+        private System.Windows.Forms.TextBox QuitDateTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label DiscordNameDisplay;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label FlatnetNameDisplay;
+        private System.Windows.Forms.TextBox DiscordNameDisplay;
+        private System.Windows.Forms.TextBox TextBox2;
+        private System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.TextBox FlatnetNameDisplay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView ClaimsSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn Claim;
@@ -481,9 +484,9 @@ namespace MarshDatabase {
                 ClaimsSelect.Rows.Clear();
                 FarmSelect.Rows.Clear();
 
-                QuitReasonLabel.Text = "";
-                QuitDateLabel.Text = "";
-                PlayerInfoLabel.Text = "Player Info: None";
+                QuitReasonTextBox.Text = "";
+                QuitDateTextBox.Text = "";
+                PlayerInfoTextBox.Text = "Player Info: None";
 
                 int selectedRowIndex = NameSelect.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = NameSelect.Rows[selectedRowIndex];
@@ -516,22 +519,20 @@ namespace MarshDatabase {
                     claimAdapter.Fill(claimOutputTable);
                     farmAdapter.Fill(farmOutputTable);
                 } catch (Exception ex) {
-                    PlayerInfoLabel.Text = "An error occured: " + ex.Message;
-                    FlatnetNameDisplay.Text = "An error occured.";
-                    DiscordNameDisplay.Text = "An error occured";
+                    PlayerInfoTextBox.Text = "Whoops an error :P, give CataclysmicCPU this message " + ex.Message;
                 } finally { sqlConnection.Close(); }
                 if (playerOutputTable != null) {
                     FlatnetNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("InGameName");
                     DiscordNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("DiscordName");
 
-                    PlayerInfoLabel.Text = "Player Info: \n" + playerOutputTable.Rows[0].Field<string>("AdditionalInfo");
-                    JoinDateLabel.Text = "Join Date: " + playerOutputTable.Rows[0].Field<DateTime>("JoinDate").ToString("M/d/yyyy");
+                    PlayerInfoTextBox.Text = "Player Info: \r\n" + playerOutputTable.Rows[0].Field<string>("AdditionalInfo");
+                    JoinDateTextBox.Text = "Join Date: " + playerOutputTable.Rows[0].Field<DateTime>("JoinDate").ToString("M/d/yyyy");
                     if (!(playerOutputTable.Rows[0].Field<string>("AdditionalInfo") == null)) {
-                        PlayerInfoLabel.Text = "Player Info: \n" + playerOutputTable.Rows[0].Field<string>("AdditionalInfo");
+                        PlayerInfoTextBox.Text = "Player Info: \r\n" + playerOutputTable.Rows[0].Field<string>("AdditionalInfo");
                     }
                     if (!(playerOutputTable.Rows[0].Field<DateTime?>("QuitDate") == null)) {
-                        QuitDateLabel.Text = "Quit Date: " + playerOutputTable.Rows[0].Field<DateTime>("QuitDate").ToString("M/d/yyyy");
-                        QuitReasonLabel.Text = "Quit Reason: \n" + playerOutputTable.Rows[0].Field<string>("QuitReason");
+                        QuitDateTextBox.Text = "Quit Date: " + playerOutputTable.Rows[0].Field<DateTime>("QuitDate").ToString("M/d/yyyy");
+                        QuitReasonTextBox.Text = "Quit Reason: \r\n" + playerOutputTable.Rows[0].Field<string>("QuitReason");
                     }
                 }
 

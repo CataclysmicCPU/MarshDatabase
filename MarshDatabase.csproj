@@ -250,6 +250,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo.ico" />
+    <Content Include="Resources\Image.png" />
+    <Content Include="Resources\Logo.ico" />
+    <Content Include="Resources\MarshLogo.jpg" />
+    <None Include="Resources\TestImage.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

@@ -99,6 +99,7 @@ namespace MarshDatabase {
 
             PlayerSelect.DataSource = searchResults;
         }
+
         private void ClaimSearchChanged(object sender, EventArgs e) {
             ClaimSelect.Rows.Clear();
             string ClaimSearchQuery = $"SELECT ClaimName, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim WHERE ClaimName LIKE '%{ClaimsSearchBox.Text}%'";
@@ -132,6 +133,41 @@ namespace MarshDatabase {
                 }
             }
         }
+
+        private void SearchFarmChanged(object sender, EventArgs e) { 
+            FarmSelect.Rows.Clear();
+            string FarmSearchQuery = $"SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey WHERE AutomatedItem LIKE '%{FarmSearchBox.Text}%'";
+            SqlCommand sqlCommand = new SqlCommand(FarmSearchQuery, sqlConnection);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+
+            DataTable searchResults = new DataTable();
+
+            try {
+                sqlConnection.Open();
+                adapter.Fill(searchResults);
+            } catch(Exception ex) {
+
+            } finally { sqlConnection.Close(); }
+
+            for (int i = 0; i < searchResults.Rows.Count; i++) {
+                if (searchResults.Rows[i].Field<int?>("SECornerY") == null) {
+                    FarmSelect.Rows.Add(
+                     searchResults.Rows[i].Field<string>("AutomatedItem"),
+                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
+                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    );
+                } else {
+                    FarmSelect.Rows.Add(
+                    searchResults.Rows[i].Field<string>("AutomatedItem"),
+                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
+                    (searchResults.Rows[i].Field<int>("SECornerY") + searchResults.Rows[i].Field<int>("NWCornerY")) / 2 + ", " +
+                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    );
+                }
+            }
+        }
+
         public void ClearSelction(object sender, EventArgs e) { 
             PlayerSelect.ClearSelection();
             ClaimSelect.ClearSelection();

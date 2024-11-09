@@ -17,21 +17,20 @@ namespace MarshDatabase {
         public ClaimView(DataGridView ClaimSlectPass, TabControl ViewSelectorPass) {
             this.ViewSwapper = ViewSelectorPass;
             this.ClaimSelect = ClaimSlectPass;
-            string fontFamily = Program.fontFamily;
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ClaimNameLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ClaimOwnerLabel = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ClaimContentsLabel = new System.Windows.Forms.Label();
-            this.ClaimDatesLabel = new System.Windows.Forms.Label();
-            this.MainClaimLabel = new System.Windows.Forms.Label();
-            this.ClaimSizeLabel = new System.Windows.Forms.Label();
+            this.TextBox2 = new System.Windows.Forms.TextBox();
+            this.ClaimNameTextBox = new System.Windows.Forms.TextBox();
+            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.ClaimOwnerTextBox = new System.Windows.Forms.LinkLabel();
+            this.TextBox4 = new System.Windows.Forms.TextBox();
+            this.ClaimContentsTextBox = new System.Windows.Forms.TextBox();
+            this.ClaimDatesTextBox = new System.Windows.Forms.TextBox();
+            this.MainClaimTextBox = new System.Windows.Forms.TextBox();
+            this.ClaimSizeTextBox = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.CordsDisplayLabel = new System.Windows.Forms.Label();
-            this.ClaimCenterLabel = new System.Windows.Forms.Label();
+            this.CordsDisplayTextBox = new System.Windows.Forms.TextBox();
+            this.ClaimCenterTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -47,187 +46,169 @@ namespace MarshDatabase {
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Font = new System.Drawing.Font(fontFamily, 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel1.Font = new System.Drawing.Font(font.Families[0], 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(893, 586);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Controls.Add(this.ClaimNameLabel);
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.ClaimOwnerLabel);
-            this.flowLayoutPanel1.Controls.Add(this.label4);
-            this.flowLayoutPanel1.Controls.Add(this.ClaimContentsLabel);
-            this.flowLayoutPanel1.Controls.Add(this.ClaimDatesLabel);
-            this.flowLayoutPanel1.Controls.Add(this.MainClaimLabel);
-            this.flowLayoutPanel1.Controls.Add(this.ClaimSizeLabel);
+            this.flowLayoutPanel1.Controls.Add(this.TextBox2);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimNameTextBox);
+            this.flowLayoutPanel1.Controls.Add(this.TextBox1);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimOwnerTextBox);
+            this.flowLayoutPanel1.Controls.Add(this.TextBox4);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimContentsTextBox);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimDatesTextBox);
+            this.flowLayoutPanel1.Controls.Add(this.MainClaimTextBox);
+            this.flowLayoutPanel1.Controls.Add(this.ClaimSizeTextBox);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 580);
-            this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // ClaimNameLabel
+            // ClaimNameTextBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font(fontFamily, 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "ClaimNameLabel";
-            this.label2.Size = new System.Drawing.Size(123, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Claim Name:";
-            this.label2.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.TextBox2.AutoSize = true;
+            this.TextBox2.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox2.Location = new System.Drawing.Point(3, 0);
+            this.TextBox2.Name = "ClaimNameTextBox";
+            this.TextBox2.Size = new System.Drawing.Size(123, 22);
+            this.TextBox2.ReadOnly = true;
+            this.TextBox2.Text = "Claim Name:";
             // 
-            // label2
+            // ClaimNameTextBox
             // 
-            this.ClaimNameLabel.AutoSize = true;
-            this.ClaimNameLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimNameLabel.Location = new System.Drawing.Point(3, 22);
-            this.ClaimNameLabel.Name = "label2";
-            this.ClaimNameLabel.Size = new System.Drawing.Size(206, 38);
-            this.ClaimNameLabel.TabIndex = 1;
-            this.ClaimNameLabel.Text = "PlaceHolder";
-            this.ClaimNameLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimNameTextBox.AutoSize = true;
+            this.ClaimNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimNameTextBox.Location = new System.Drawing.Point(3, 22);
+            this.ClaimNameTextBox.Name = "TextBox2";
+            this.ClaimNameTextBox.Size = new System.Drawing.Size(300, 35);
+            this.ClaimNameTextBox.TabIndex = 1;
+            this.ClaimNameTextBox.Text = "PlaceHolder";
             // 
-            // label1
+            // TextBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font(fontFamily, 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 44);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "\r\nClaim Owner: ";
-            this.label1.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.TextBox1.AutoSize = true;
+            this.TextBox1.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox1.Location = new System.Drawing.Point(3, 60);
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Size = new System.Drawing.Size(136, 25);
+            this.TextBox1.TabIndex = 2;
+            this.TextBox1.AcceptsReturn = true;
+            this.TextBox1.Multiline = true;
+            this.TextBox1.Text = "Claim Owner: ";
             // 
-            // ClaimOwnerLabel
+            // ClaimOwnerTextBox
             // 
-            this.ClaimOwnerLabel.AutoSize = true;
-            this.ClaimOwnerLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimOwnerLabel.Location = new System.Drawing.Point(3, 104);
-            this.ClaimOwnerLabel.Name = "ClaimOwnerLabel";
-            this.ClaimOwnerLabel.Size = new System.Drawing.Size(206, 38);
-            this.ClaimOwnerLabel.TabIndex = 3;
-            this.ClaimOwnerLabel.Text = "PlaceHolder";
-            this.ClaimOwnerLabel.LinkClicked += SwapToPlayer;
-            this.ClaimOwnerLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimOwnerTextBox.AutoSize = true;
+            this.ClaimOwnerTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimOwnerTextBox.Location = new System.Drawing.Point(3, 0);
+            this.ClaimOwnerTextBox.Name = "ClaimOwnerTextBox";
+            this.ClaimOwnerTextBox.Size = new System.Drawing.Size(300, 25);
+            this.ClaimOwnerTextBox.TabIndex = 3;
+            this.ClaimOwnerTextBox.Text = "Placeholder";
+            this.ClaimOwnerTextBox.LinkClicked += SwapToPlayer;
             // 
-            // label4
+            // TextBox4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font(fontFamily, 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 44);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "\r\nContents: ";
-            this.label4.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.TextBox4.AutoSize = true;
+            this.TextBox4.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox4.Location = new System.Drawing.Point(3, 142);
+            this.TextBox4.Name = "TextBox4";
+            this.TextBox4.Size = new System.Drawing.Size(102, 24);
+            this.TextBox4.TabIndex = 4;
+            this.TextBox4.AcceptsReturn = true;
+            this.TextBox4.Multiline = true;
+            this.TextBox4.Text = "Contents:";
             // 
-            // ClaimContentsLabel
+            // ClaimContentsTextBox
             // 
-            this.ClaimContentsLabel.AutoSize = true;
-            this.ClaimContentsLabel.Font = new System.Drawing.Font(fontFamily, 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimContentsLabel.Location = new System.Drawing.Point(3, 186);
-            this.ClaimContentsLabel.Name = "ClaimContentsLabel";
-            this.ClaimContentsLabel.Size = new System.Drawing.Size(162, 29);
-            this.ClaimContentsLabel.TabIndex = 5;
-            this.ClaimContentsLabel.Text = "PlaceHolder";
-            this.ClaimContentsLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimContentsTextBox.AutoSize = true;
+            this.ClaimContentsTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimContentsTextBox.Location = new System.Drawing.Point(3, 186);
+            this.ClaimContentsTextBox.Name = "ClaimContentsTextBox";
+            this.ClaimContentsTextBox.Size = new System.Drawing.Size(500, 100);
+            this.ClaimContentsTextBox.TabIndex = 5;
+            this.ClaimContentsTextBox.Multiline = true;
+            this.ClaimContentsTextBox.WordWrap = true;
+            this.ClaimContentsTextBox.Text = "PlaceHolder";
             // 
-            // ClaimDatesLabel
+            // ClaimDatesTextBox
             // 
-            this.ClaimDatesLabel.AutoSize = true;
-            this.ClaimDatesLabel.Font = new System.Drawing.Font(fontFamily, 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimDatesLabel.Location = new System.Drawing.Point(3, 215);
-            this.ClaimDatesLabel.Name = "ClaimDatesLabel";
-            this.ClaimDatesLabel.Size = new System.Drawing.Size(190, 174);
-            this.ClaimDatesLabel.TabIndex = 6;
-            this.ClaimDatesLabel.Text = "\r\nDate Created: \r\n99/99/999 \r\n\r\nDate Deleted: \r\n99/99/999";
-            this.ClaimDatesLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimDatesTextBox.AutoSize = true;
+            this.ClaimDatesTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimDatesTextBox.Location = new System.Drawing.Point(3, 215);
+            this.ClaimDatesTextBox.Name = "ClaimDatesTextBox";
+            this.ClaimDatesTextBox.Size = new System.Drawing.Size(300, 30);
+            this.ClaimDatesTextBox.TabIndex = 6;
+            this.ClaimDatesTextBox.AcceptsReturn = true;
+            this.ClaimDatesTextBox.Multiline = true;
+            this.ClaimDatesTextBox.Text = "\nDate Created: 99/99/999 \nDate Deleted: 99/99/999";
             // 
-            // MainClaimLabel
+            // MainClaimTextBox
             // 
-            this.MainClaimLabel.AutoSize = true;
-            this.MainClaimLabel.Font = new System.Drawing.Font(fontFamily, 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainClaimLabel.Location = new System.Drawing.Point(3, 389);
-            this.MainClaimLabel.Name = "MainClaimLabel";
-            this.MainClaimLabel.Size = new System.Drawing.Size(204, 87);
-            this.MainClaimLabel.TabIndex = 7;
-            this.MainClaimLabel.Text = "\r\nIn Main Claim? \r\nYes\r\n";
-            this.MainClaimLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.MainClaimTextBox.AutoSize = true;
+            this.MainClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainClaimTextBox.Location = new System.Drawing.Point(3, 389);
+            this.MainClaimTextBox.Name = "MainClaimTextBox";
+            this.MainClaimTextBox.Size = new System.Drawing.Size(204, 87);
+            this.MainClaimTextBox.TabIndex = 7;
+            this.MainClaimTextBox.AcceptsReturn = true;
+            this.MainClaimTextBox.Multiline = true;
+            this.MainClaimTextBox.Text = "\r\nIn Main Claim? \r\nYes";
             // 
-            // label3
+            // TextBox3
             // 
-            this.ClaimSizeLabel.AutoSize = true;
-            this.ClaimSizeLabel.Font = new System.Drawing.Font(fontFamily, 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimSizeLabel.Location = new System.Drawing.Point(3, 476);
-            this.ClaimSizeLabel.Name = "label3";
-            this.ClaimSizeLabel.Size = new System.Drawing.Size(111, 87);
-            this.ClaimSizeLabel.TabIndex = 8;
-            this.ClaimSizeLabel.Text = "\r\nSize: \r\n999,999\r\n";
-            this.ClaimSizeLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimSizeTextBox.AutoSize = true;
+            this.ClaimSizeTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimSizeTextBox.Location = new System.Drawing.Point(3, 476);
+            this.ClaimSizeTextBox.Name = "TextBox3";
+            this.ClaimSizeTextBox.Size = new System.Drawing.Size(200, 87);
+            this.ClaimSizeTextBox.TabIndex = 8;
+            this.ClaimSizeTextBox.AcceptsReturn = true;
+            this.ClaimSizeTextBox.Multiline = true;
+            this.ClaimSizeTextBox.Text = "\nSize: \n999,999";
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.CordsDisplayLabel);
-            this.flowLayoutPanel2.Controls.Add(this.ClaimCenterLabel);
+            this.flowLayoutPanel2.Controls.Add(this.CordsDisplayTextBox);
+            this.flowLayoutPanel2.Controls.Add(this.ClaimCenterTextBox);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(449, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
             this.flowLayoutPanel2.Size = new System.Drawing.Size(441, 580);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
-            // CordsDisplayLabel
+            // CordsDisplayTextBox
             // 
-            this.CordsDisplayLabel.AutoSize = true;
-            this.CordsDisplayLabel.Font = new System.Drawing.Font(fontFamily, 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CordsDisplayLabel.Location = new System.Drawing.Point(3, 0);
-            this.CordsDisplayLabel.Name = "CordsDisplayLabel";
-            this.CordsDisplayLabel.Size = new System.Drawing.Size(432, 195);
-            this.CordsDisplayLabel.TabIndex = 2;
-            this.CordsDisplayLabel.Text = "Claim Corners: \r\nNW: -9999, -999, -9999 NE: -9999, -999, -9999\nSW: -9999, -999, " +
+            this.CordsDisplayTextBox.AutoSize = true;
+            this.CordsDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CordsDisplayTextBox.Location = new System.Drawing.Point(3, 0);
+            this.CordsDisplayTextBox.Name = "CordsDisplayTextBox";
+            this.CordsDisplayTextBox.Size = new System.Drawing.Size(500, 177);
+            this.CordsDisplayTextBox.TabIndex = 2;
+            this.CordsDisplayTextBox.AcceptsReturn = true;
+            this.CordsDisplayTextBox.Multiline = true;
+            this.CordsDisplayTextBox.Text = "Claim Corners: \r\nNW: -9999, -999, -9999 NE: -9999, -999, -9999\r\nSW: -9999, -999, " +
     "-9999 SE: -9999, -999, -9999";
-            this.CordsDisplayLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
 
             // 
-            // ClaimCenterLabel
+            // ClaimCenterTextBox
             // 
-            this.ClaimCenterLabel.AutoSize = true;
-            this.ClaimCenterLabel.Font = new System.Drawing.Font(fontFamily, 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClaimCenterLabel.Location = new System.Drawing.Point(3, 195);
-            this.ClaimCenterLabel.Name = "ClaimCenterLabel";
-            this.ClaimCenterLabel.Size = new System.Drawing.Size(277, 117);
-            this.ClaimCenterLabel.TabIndex = 3;
-            this.ClaimCenterLabel.Text = "\r\nClaim Center: \r\n-9999,-999,-9999\r\n";
-            this.ClaimCenterLabel.MouseUp += new MouseEventHandler(
-                          delegate (object sender, MouseEventArgs e)
-                          { HideCaret((sender as Control).Handle); });
+            this.ClaimCenterTextBox.AutoSize = true;
+            this.ClaimCenterTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimCenterTextBox.Location = new System.Drawing.Point(3, 195);
+            this.ClaimCenterTextBox.Name = "ClaimCenterTextBox";
+            this.ClaimCenterTextBox.Size = new System.Drawing.Size(500, 117);
+            this.ClaimCenterTextBox.TabIndex = 3;
+            this.ClaimCenterTextBox.Multiline = true;
+            this.ClaimCenterTextBox.AcceptsReturn = true;
+            this.ClaimCenterTextBox.Text = "\r\nClaim Center: \r\n-9999,-999,-9999\r\n";;
 
             this.ClientSize = new System.Drawing.Size(893, 586);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -253,18 +234,18 @@ namespace MarshDatabase {
         private TabControl ViewSwapper;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label ClaimNameLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel ClaimOwnerLabel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label ClaimContentsLabel;
-        private System.Windows.Forms.Label ClaimDatesLabel;
-        private System.Windows.Forms.Label MainClaimLabel;
-        private System.Windows.Forms.Label ClaimSizeLabel;
+        private System.Windows.Forms.TextBox TextBox2;
+        private System.Windows.Forms.TextBox ClaimNameTextBox;
+        private System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.LinkLabel ClaimOwnerTextBox;
+        private System.Windows.Forms.TextBox TextBox4;
+        private System.Windows.Forms.TextBox ClaimContentsTextBox;
+        private System.Windows.Forms.TextBox ClaimDatesTextBox;
+        private System.Windows.Forms.TextBox MainClaimTextBox;
+        private System.Windows.Forms.TextBox ClaimSizeTextBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Label CordsDisplayLabel;
-        private System.Windows.Forms.Label ClaimCenterLabel;
+        private System.Windows.Forms.TextBox CordsDisplayTextBox;
+        private System.Windows.Forms.TextBox ClaimCenterTextBox;
 
         void IClaimView.ShowClaimData(object sender, EventArgs e) {
             if (ClaimSelect.SelectedCells.Count > 0) {
@@ -275,7 +256,7 @@ namespace MarshDatabase {
 
 
 
-                string claimQuery = $"SELECT InGameName, ClaimName, Size, Contents, DateCreated, DateDeleted, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim INNER JOIN [Member] ON OwnerMemberKey=[Member].[MemberKey] WHERE ClaimName = '{claimNameSelected}'";
+                string claimQuery = $"SELECT InGameName, ClaimName, Size, Contents, DateCreated, DateDeleted, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, InMainClaim FROM dbo.Claim INNER JOIN [Member] ON OwnerMemberKey=[Member].[MemberKey] WHERE ClaimName = '{claimNameSelected}'";
                 SqlCommand claimCmd = new SqlCommand(claimQuery, sqlConnection);
                 SqlDataAdapter claimDataAdapter = new SqlDataAdapter(claimCmd);
 
@@ -285,39 +266,40 @@ namespace MarshDatabase {
                     sqlConnection.Open();
                     claimDataAdapter.Fill(ClaimOutputTable);
                 } catch (Exception ex) {
-                    ClaimContentsLabel.Text = "An error happened :P, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
+                    ClaimContentsTextBox.Text = "An error happened :P, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
                 } finally { sqlConnection.Close(); }
 
-                ClaimNameLabel.Text = claimNameSelected;
-                ClaimContentsLabel.Text = "Contents: " + ClaimOutputTable.Rows[0].Field<string>("Contents");
-                ClaimOwnerLabel.Text = ClaimOutputTable.Rows[0].Field<string>("InGameName");
-                ClaimSizeLabel.Text = "\nSize: " + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
+                ClaimNameTextBox.Text = claimNameSelected;
+                ClaimContentsTextBox.Text = ClaimOutputTable.Rows[0].Field<string>("Contents");
+                ClaimOwnerTextBox.Text += ClaimOutputTable.Rows[0].Field<string>("InGameName");
+                ClaimSizeTextBox.Text = "\r\nSize: \r\n" + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
+                MainClaimTextBox.Text =  "\r\nIn Main Claim? \r\n" + ClaimOutputTable.Rows[0].Field<bool>("InMainClaim");
                 if (ClaimOutputTable.Rows[0].Field<DateTime?>("DateDeleted") == null) {
-                    ClaimDatesLabel.Text = "\nDate Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
+                    ClaimDatesTextBox.Text = "\nDate Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
                 } else {
-                    ClaimDatesLabel.Text = "Date Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy") +
-                                         "\nDate Deleted: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateDeleted").ToString("M/d/yyyy");
+                    ClaimDatesTextBox.Text = "Date Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy") +
+                                         "\r\nDate Deleted: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateDeleted").ToString("M/d/yyyy");
                 }
                 if (ClaimOutputTable.Rows[0].Field<int?>("SECornerY") == null) {
-                    CordsDisplayLabel.Text =
-                        "Claim Corners: \nNW: " +
+                    CordsDisplayTextBox.Text =
+                        "Claim Corners: \r\nNW: " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " NE: " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
-                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\n SW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\r\n SW: " +
                         ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " SE: " +
                         ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerZ");
                 } else {
-                    CordsDisplayLabel.Text =
-                        "Claim Corners: \nNW: " +
+                    CordsDisplayTextBox.Text =
+                        "Claim Corners: \r\nNW: " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + " NE: " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + ", " +
-                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\n SW: " +
+                        ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + "\r\n SW: " +
                         ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ", " +
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerY") + " SE: " +
@@ -326,11 +308,11 @@ namespace MarshDatabase {
                         ClaimOutputTable.Rows[0].Field<int>("NWCornerZ") + "";
                 }
                 if (ClaimOutputTable.Rows[0].Field<int?>("SECornerY") == null) {
-                    ClaimCenterLabel.Text = "\nClaim Center: " +
+                    ClaimCenterTextBox.Text = "\nClaim Center: " +
                     (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
                     (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
                 } else {
-                    ClaimCenterLabel.Text = "\nClaim Center: " +
+                    ClaimCenterTextBox.Text = "\nClaim Center: " +
                     (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
                     (ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ClaimOutputTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
                     (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
@@ -345,7 +327,7 @@ namespace MarshDatabase {
             playerSwapName = s;
         }
         void SwapToPlayer(object sender, EventArgs e) {
-            playerSwapName = ClaimOwnerLabel.Text;
+            playerSwapName = ClaimOwnerTextBox.Text;
         }
         [DllImport("User32.dll")]
         static extern Boolean HideCaret(IntPtr hWnd);

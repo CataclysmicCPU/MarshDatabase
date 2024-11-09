@@ -9,7 +9,7 @@ namespace MarshDatabase {
 
         public static MarshDB marshDB;
         Thread BootThread;
-        string StatusLabelText = "Booting...";
+        string StatusTextBoxText = "Booting...";
 
         public BootScreen() {
             InitializeComponent();
@@ -27,21 +27,21 @@ namespace MarshDatabase {
         }
         public void EstablishDBConn() {
             //Thread.Sleep(2000);
-            StatusLabelText = "Connecting to Database...";
+            StatusTextBoxText = "Connecting to Database...";
             while (true) {
                 try {
                     sqlConnection.Open();
                     sqlConnection.Close();
                     break;
                 } catch (Exception) {
-                    StatusLabelText = "Database Offline\n Booting Database...";
+                    StatusTextBoxText = "Database Offline\n Booting Database...";
                 }
             }
-            StatusLabelText = "Connection Established.";
+            StatusTextBoxText = "Connection Established.";
         }
 
         private void ApplicationIdle(object sender, EventArgs e) {
-            BootStatusLabel.Text = StatusLabelText;
+            BootStatusLabel.Text = StatusTextBoxText;
             if (BootStatusLabel.Text == "Connection Established.") {
                 this.Close();
             }

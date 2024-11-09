@@ -349,15 +349,15 @@ namespace DarkModeForms
             control.GetType().GetProperty("ForeColor")?.SetValue(control, OScolors.TextActive);
 
             /* Here we Finetune individual Controls  */
-            if (control is Label)
+            if (control is TextBox)
             {
                 control.GetType().GetProperty("BackColor")?.SetValue(control, control.Parent.BackColor);
-                control.GetType().GetProperty("BorderStyle")?.SetValue(control, BorderStyle.None);
+                control.GetType().GetProperty("BorderStyle")?.SetValue(control, BorderStyle.FixedSingle);
                 control.Paint += (object sender, PaintEventArgs e) =>
                 {
                     if (control.Enabled == false && this.IsDarkMode)
                     {
-                        var radio = (sender as Label);
+                        var radio = (sender as TextBox);
                         Brush B = new SolidBrush(control.ForeColor);
 
                         e.Graphics.DrawString(radio.Text, radio.Font,
@@ -369,11 +369,18 @@ namespace DarkModeForms
             {
                 control.GetType().GetProperty("LinkColor")?.SetValue(control, OScolors.AccentLight);
                 control.GetType().GetProperty("VisitedLinkColor")?.SetValue(control, OScolors.Primary);
+                control.GetType().GetProperty("BackColor")?.SetValue(control, OScolors.Surface);
             }
             if (control is TextBox)
             {
                 //SetRoundBorders(tb, 4, OScolors.SurfaceDark, 1);
-                control.GetType().GetProperty("BorderStyle")?.SetValue(control, BStyle);
+                if ((int)control.GetType().GetProperty("TabIndex").GetValue(control) != 999) {
+                    control.GetType().GetProperty("BorderStyle")?.SetValue(control, BorderStyle.None);
+                    control.GetType().GetProperty("ReadOnly")?.SetValue(control, true);
+                    control.GetType().GetProperty("BackColor")?.SetValue(control, OScolors.SurfaceDark);
+                    control.GetType().GetProperty("TabStop")?.SetValue(control, false);
+
+                }
             }
             if (control is NumericUpDown)
             {
