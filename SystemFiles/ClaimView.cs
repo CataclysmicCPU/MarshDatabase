@@ -271,7 +271,7 @@ namespace MarshDatabase {
 
                 ClaimNameTextBox.Text = claimNameSelected;
                 ClaimContentsTextBox.Text = ClaimOutputTable.Rows[0].Field<string>("Contents");
-                ClaimOwnerTextBox.Text += ClaimOutputTable.Rows[0].Field<string>("InGameName");
+                ClaimOwnerTextBox.Text = ClaimOutputTable.Rows[0].Field<string>("InGameName");
                 ClaimSizeTextBox.Text = "\r\nSize: \r\n" + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
                 MainClaimTextBox.Text =  "\r\nIn Main Claim? \r\n" + ClaimOutputTable.Rows[0].Field<bool>("InMainClaim");
                 if (ClaimOutputTable.Rows[0].Field<DateTime?>("DateDeleted") == null) {
