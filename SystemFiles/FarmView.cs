@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -287,7 +283,7 @@ namespace MarshDatabase {
                 DataGridViewRow selectedRow = FarmSelect.Rows[FarmSelect.SelectedCells[0].RowIndex];
                 string farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
 
-                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem3, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved, Picture FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
+                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem2, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved, Picture FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
 
                 SqlCommand sqlCommand = new SqlCommand(farmQuery, sqlConnection);
 
@@ -312,19 +308,18 @@ namespace MarshDatabase {
                 }
 
                 if (farmTable.Rows[0].Field<string>("RequiredInputItem1") != null) {
-                    InputItemsTextBox.Text = "\r\nRequired Input Items:\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate1") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem1") + "/h";
+                    InputItemsTextBox.Text = "\r\nRequired Input Items:\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate1") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem1") + "/h";
                 } else {
                     InputItemsTextBox.Text = "\r\nRequired Input Items:\r\nNone";
                 }
-                if (farmTable.Rows[0].Field<string>("RequiredInputRate2") != null) {
-                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
+                if (farmTable.Rows[0].Field<string>("RequiredInputItem2") != null) {
+                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
                 }
-                if (farmTable.Rows[0].Field<string>("RequiredInputRate3") != null) {
-                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<string>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
+                if (farmTable.Rows[0].Field<string>("RequiredInputItem3") != null) {
+                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
                 }
 
                 if (farmTable.Rows[0].Field<int?>("SECornerY") == null) {
-
                     FarmLocationTextBox.Text = "\r\nClaim Center:\r\n" +
                     (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
@@ -334,6 +329,7 @@ namespace MarshDatabase {
                     (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
                 }
+
                 try {
                     var imageData = farmTable.Rows[0].Field<byte[]>("Picture");
                     if (imageData != null) {
@@ -345,8 +341,9 @@ namespace MarshDatabase {
                         throw new Exception();
                     }
                 } catch {
-                    FarmImage.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
+                    FarmImage.Image = Properties.Resources.MarshLogo;
                 }
+
                 ViewSwapper.SelectedIndex = 2;
             }
         }

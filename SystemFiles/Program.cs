@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Reflection;
@@ -23,6 +22,7 @@ namespace MarshDatabase {
 
             byte[] testFont = Properties.Resources.RubikBubbles_Regular; 
 
+            //stack overflows code
             var resourceArr = new [] { mainFont, testFont };
 
             foreach (var item in resourceArr) {
@@ -45,14 +45,14 @@ namespace MarshDatabase {
 
                 Marshal.FreeCoTaskMem(data);
             }
-
+            //my code again
             string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password=Teams123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=1;";
             sqlConnection = new SqlConnection(connectionString);
 
             bootScreen = new BootScreen();
             Application.Run(bootScreen);
         }
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
 
         [DllImport("gdi32.dll")]
