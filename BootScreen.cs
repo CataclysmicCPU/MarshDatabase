@@ -16,7 +16,12 @@ namespace MarshDatabase {
             DarkModeCS darkModeCS = new DarkModeCS(this);
             darkModeCS.ApplyTheme(true);
 
+            Label2.BackColor = Label2.Parent.BackColor;
+            BootStatusLabel.BackColor = BootStatusLabel.Parent.BackColor;
+            EasterEggLabel.BackColor = EasterEggLabel.Parent.BackColor;
+
             BootThread = new Thread(() => {
+                //Thread.Sleep(2000);
                 EstablishDBConn();
                 marshDB = new MarshDB();
                 marshDB.ShowDialog();
@@ -26,7 +31,6 @@ namespace MarshDatabase {
             BootThread.Start();
         }
         public void EstablishDBConn() {
-            //Thread.Sleep(2000);
             StatusTextBoxText = "Connecting to Database...";
             while (true) {
                 try {
@@ -44,10 +48,11 @@ namespace MarshDatabase {
             BootStatusLabel.Text = StatusTextBoxText;
             if (BootStatusLabel.Text == "Connection Established.") {
                 this.Close();
+                BootThread.Join();
             }
         }
         private void BootStatusLabel_Click(object sender, EventArgs e) {
-            EasterEggLabel.Text = "Congrats you found an easter egg! (ping lava and say \"SCOOPY DOOBY DOO!!!\", dont tell him and share the easter egg)";
+            EasterEggLabel.Text = "Congrats you found an easter egg! (ping lava and say cata sends his regards, dont tell him and share the easter egg)";
         }
     }
 }

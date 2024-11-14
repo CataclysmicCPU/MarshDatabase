@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -93,8 +95,8 @@ namespace MarshDatabase {
             // FarmImage
             // 
             this.FarmImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FarmImage.ErrorImage = global::MarshDatabase.Properties.Resources.MarshLogo;
-            this.FarmImage.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
+            //this.FarmImage.ErrorImage = global::MarshDatabase.Properties.Resources.MarshLogo;
+            //this.FarmImage.Image = global::MarshDatabase.Properties.Resources.MarshLogo;
             this.FarmImage.Location = new System.Drawing.Point(0, 0);
             this.FarmImage.Name = "FarmImage";
             this.FarmImage.Size = new System.Drawing.Size(278, 278);
@@ -129,7 +131,7 @@ namespace MarshDatabase {
             this.InputItemsTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InputItemsTextBox.Location = new System.Drawing.Point(3, 32);
             this.InputItemsTextBox.Name = "InputItemsTextBox";
-            this.InputItemsTextBox.Size = new System.Drawing.Size(300, 128);
+            this.InputItemsTextBox.Size = new System.Drawing.Size(300, 183);
             this.InputItemsTextBox.TabIndex = 1;
             this.InputItemsTextBox.Multiline = true;
             this.InputItemsTextBox.WordWrap= true;
@@ -275,27 +277,32 @@ namespace MarshDatabase {
         private System.Windows.Forms.LinkLabel CreatorNameTextBox;
         private System.Windows.Forms.TextBox DatesDisplayTextBox;
         private System.Windows.Forms.TextBox FarmLocationTextBox;
+        private DataTable farmTable;
+        private string farmNameSelected;
 
         void IFarmView.ShowFarmData(object sender, EventArgs e) {
             if (FarmSelect.SelectedCells.Count > 0) {
 
                 int selectedRowIndex = FarmSelect.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = FarmSelect.Rows[FarmSelect.SelectedCells[0].RowIndex];
-                string farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
+                farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
 
-                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem2, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved, Picture FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
+                string farmQuery = $"SELECT AutomatedItem, AutomatedItemRate, RequiredInputItem1, RequiredInputItem2, RequiredInputItem3, RequiredInputRate1, RequiredInputRate2, RequiredInputRate3, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, ClaimName, InGameName, Farm.DateCreated, Farm.DateRemoved FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey INNER JOIN dbo.Member ON CreatorMemberKey=MemberKey WHERE AutomatedItem = '{farmNameSelected}'";
 
                 SqlCommand sqlCommand = new SqlCommand(farmQuery, sqlConnection);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
 
-                DataTable farmTable = new DataTable();
+                farmTable = new DataTable();
+
 
                 try {
                     sqlConnection.Open();
                     adapter.Fill(farmTable);
                 } catch (Exception ex) {
-                    AutomatedItemTextBox.Text = "An error occured, please contact CataclysmicCPU and give him this error message: " + ex.Message;
+                    AutomatedItemTextBox.Text = "oops an error :P, try again and if the issue persists, please contact CataclysmicCPU and give him this error message: " + ex.Message;
+                    BootScreen.EstablishDBConn();
+                    Thread.CurrentThread.Suspend();
                 } finally { sqlConnection.Close(); }
 
                 AutomatedItemTextBox.Text = "Automated Item: \r\n" + farmTable.Rows[0][0] + " " + farmTable.Rows[0][1] + "/h";
@@ -313,10 +320,10 @@ namespace MarshDatabase {
                     InputItemsTextBox.Text = "\r\nRequired Input Items:\r\nNone";
                 }
                 if (farmTable.Rows[0].Field<string>("RequiredInputItem2") != null) {
-                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
+                    InputItemsTextBox.Text += "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate2") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem2") + "/h";
                 }
                 if (farmTable.Rows[0].Field<string>("RequiredInputItem3") != null) {
-                    InputItemsTextBox.Text = "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
+                    InputItemsTextBox.Text += "\r\n" + farmTable.Rows[0].Field<int>("RequiredInputRate3") + " " + farmTable.Rows[0].Field<string>("RequiredInputItem3") + "/h";
                 }
 
                 if (farmTable.Rows[0].Field<int?>("SECornerY") == null) {
@@ -329,23 +336,43 @@ namespace MarshDatabase {
                     (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
                     (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
                 }
-
-                try {
-                    var imageData = farmTable.Rows[0].Field<byte[]>("Picture");
-                    if (imageData != null) {
-                        using (var ms = new MemoryStream(imageData, 0, imageData.Length)) {
-                            ms.Write(imageData, 0, imageData.Length);
-                            FarmImage.Image = Image.FromStream(ms);
-                        }
-                    } else {
-                        throw new Exception();
-                    }
-                } catch {
-                    FarmImage.Image = Properties.Resources.MarshLogo;
-                }
-
                 ViewSwapper.SelectedIndex = 2;
+                BackgroundWorker backgroundWorker = new BackgroundWorker();
+                backgroundWorker.DoWork += loadFarmImage;
+                backgroundWorker.RunWorkerAsync();
             }
+        }
+        void loadFarmImage(object sender, DoWorkEventArgs e) {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            string pictureQuery = $"SELECT Picture FROM dbo.Farm WHERE AutomatedItem = '{farmNameSelected}'";
+
+            SqlCommand pictureCommand = new SqlCommand(pictureQuery, sqlConnection);
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(pictureCommand);
+
+            DataTable pictureTable = new DataTable();
+
+            try {
+                sqlConnection.Open();
+                dataAdapter.Fill(pictureTable);
+            } catch(Exception ex) {
+                FarmLocationTextBox.Text = "Oops an error :P, please contace CataclysmicCPU and give him this message: " + ex.Message;
+            } finally { sqlConnection.Close(); }
+            try {
+                var imageData = pictureTable.Rows[0].Field<byte[]>("Picture");
+                if (imageData != null) {
+                    using (var ms = new MemoryStream(imageData, 0, imageData.Length)) {
+                        ms.Write(imageData, 0, imageData.Length);
+                        FarmImage.Image = Image.FromStream(ms);
+                    }
+                } else {
+                    throw new Exception();
+                }
+            } catch {
+                FarmImage.Image = Properties.Resources.MarshLogo;
+            }
+            worker.CancelAsync();
+            worker.Dispose();
         }
         string IFarmView.getPlayerSwapName() {
             return playerSwapName;

@@ -1,4 +1,6 @@
-﻿namespace MarshDatabase
+﻿using DarkModeForms;
+
+namespace MarshDatabase
 {
     partial class BootScreen
     {
@@ -30,7 +32,6 @@
         {
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-            System.Windows.Forms.Label Label2;
             System.Windows.Forms.PictureBox pictureBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootScreen));
             this.BootStatusLabel = new System.Windows.Forms.Label();
@@ -86,9 +87,7 @@
             Label2.Location = new System.Drawing.Point(3, 9);
             Label2.Name = "Label2";
             Label2.Size = new System.Drawing.Size(528, 42);
-            Label2.TabIndex = 2;
             Label2.Text = "Marsh Database System";
-            Label2.BackColor = this.BackColor;
             Label2.TextAlign = (System.Drawing.ContentAlignment)System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
@@ -103,13 +102,13 @@
             // 
             // BootStatusLabel
             // 
+            this.BootStatusLabel.TabIndex = 999;
             this.BootStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BootStatusLabel.AutoSize = true;
             this.BootStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BootStatusLabel.Location = new System.Drawing.Point(3, 335);
             this.BootStatusLabel.Name = "BootStatusLabel";
             this.BootStatusLabel.Size = new System.Drawing.Size(528, 38);
-            this.BootStatusLabel.TabIndex = 1;
             this.BootStatusLabel.BackColor = this.BackColor;
             this.BootStatusLabel.Text = "Booting...";
             this.BootStatusLabel.TextAlign = (System.Drawing.ContentAlignment)System.Windows.Forms.HorizontalAlignment.Center;
@@ -128,10 +127,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 662);
+            this.ClientSize = new System.Drawing.Size(950, 712);
             this.Controls.Add(tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 653);
+            this.MinimumSize = new System.Drawing.Size(900, 750);
             this.Name = "BootScreen";
             this.Text = "Marsh Database - Booting...";
             tableLayoutPanel1.ResumeLayout(false);
@@ -146,5 +145,6 @@
         #endregion
         public System.Windows.Forms.Label BootStatusLabel;
         private System.Windows.Forms.Label EasterEggLabel;
+        public System.Windows.Forms.Label Label2;
     }
 }
