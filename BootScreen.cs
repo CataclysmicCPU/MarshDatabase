@@ -1,13 +1,14 @@
 ﻿using DarkModeForms;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
 namespace MarshDatabase {
     public partial class BootScreen : Form {
         public static MarshDB marshDB;
-        Thread BootThread;
+        Task<int> BootThread;
         string StatusTextBoxText = "Booting...";
 
         public BootScreen() {
@@ -19,15 +20,15 @@ namespace MarshDatabase {
             BootStatusLabel.BackColor = BootStatusLabel.Parent.BackColor;
             EasterEggLabel.BackColor = EasterEggLabel.Parent.BackColor;
 
-            BootThread = new Thread(() => {
+            Application.Idle += ApplicationIdle;
+
+            BootThread = Task.Run(() => {
                 Thread.Sleep(2000);
                 EstablishDBConn();
                 marshDB = new MarshDB();
                 marshDB.ShowDialog();
+                return 1;
             });
-
-            Application.Idle += ApplicationIdle;
-            BootThread.Start();
         }
 
         public void EstablishDBConn() {
@@ -44,10 +45,12 @@ namespace MarshDatabase {
             StatusTextBoxText = "Connection Established.";
         }
 
-        private void ApplicationIdle(object sender, EventArgs e) {
+        private async void ApplicationIdle(object sender, EventArgs e) {
             BootStatusLabel.Text = StatusTextBoxText;
             if (BootStatusLabel.Text == "Connection Established.") {
-                BootThread.Join();
+                Application.Idle -= ApplicationIdle;
+                this.Hide();
+                await BootThread;
                 this.Close();
             }
         }
