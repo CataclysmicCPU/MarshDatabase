@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -300,9 +299,9 @@ namespace MarshDatabase {
                     sqlConnection.Open();
                     adapter.Fill(farmTable);
                 } catch (Exception ex) {
-                    AutomatedItemTextBox.Text = "oops an error :P, try again and if the issue persists, please contact CataclysmicCPU and give him this error message: " + ex.Message;
-                    BootScreen.EstablishDBConn();
-                    Thread.CurrentThread.Suspend();
+                    //MessageBox.Show("Oops, the database paused itself, please wait for it to start again.");
+                    //MarshDB.RestartDB();
+                    AutomatedItemTextBox.Text = "oops an error :P, restart and if the issue persists, please contact CataclysmicCPU and give him this error message: " + ex.Message;
                 } finally { sqlConnection.Close(); }
 
                 AutomatedItemTextBox.Text = "Automated Item: \r\n" + farmTable.Rows[0][0] + " " + farmTable.Rows[0][1] + "/h";

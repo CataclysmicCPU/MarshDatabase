@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -134,7 +135,7 @@ namespace MarshDatabase {
             }
         }
 
-        private void SearchFarmChanged(object sender, EventArgs e) { 
+        private void SearchFarmChanged(object sender, EventArgs e) {
             FarmSelect.Rows.Clear();
             string FarmSearchQuery = $"SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey WHERE AutomatedItem LIKE '%{FarmSearchBox.Text}%'";
             SqlCommand sqlCommand = new SqlCommand(FarmSearchQuery, sqlConnection);
@@ -146,7 +147,7 @@ namespace MarshDatabase {
             try {
                 sqlConnection.Open();
                 adapter.Fill(searchResults);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
 
             } finally { sqlConnection.Close(); }
 
@@ -168,15 +169,25 @@ namespace MarshDatabase {
             }
         }
 
-        public void ClearSelction(object sender, EventArgs e) { 
+        public void ClearSelction(object sender, EventArgs e) {
             PlayerSelect.ClearSelection();
             ClaimSelect.ClearSelection();
             FarmSelect.ClearSelection();
         }
+        public static void RestartDB() {
+            while (true) {
+                try {
+                    sqlConnection.Open();
+                    sqlConnection.Close();
+                    break;
+                } catch {
+                }
+            }
+        }
         protected override CreateParams CreateParams {
             get {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle &= ~0x02000000;  
+                cp.ExStyle &= ~0x02000000;
                 return cp;
             }
         }

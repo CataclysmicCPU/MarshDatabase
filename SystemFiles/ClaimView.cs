@@ -266,7 +266,9 @@ namespace MarshDatabase {
                     sqlConnection.Open();
                     claimDataAdapter.Fill(ClaimOutputTable);
                 } catch (Exception ex) {
-                    ClaimContentsTextBox.Text = "An error happened :P, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
+                    //MessageBox.Show("Oops, the database paused itself, please wait for it to start again.");
+                    //MarshDB.RestartDB();
+                    ClaimContentsTextBox.Text = "An error happened :P, restart and if the issue persists, Please contact CataclysmicCPU and give gim this message, " + ex.Message;
                 } finally { sqlConnection.Close(); }
 
                 ClaimNameTextBox.Text = claimNameSelected;

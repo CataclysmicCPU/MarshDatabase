@@ -511,16 +511,18 @@ namespace MarshDatabase {
                 DataTable rolesOutputTable = new DataTable();
                 DataTable claimOutputTable = new DataTable();
                 DataTable farmOutputTable = new DataTable();
+                    try {
+                        sqlConnection.Open();
+                        playerAdapter.Fill(playerOutputTable);
+                        rolesAdapater.Fill(rolesOutputTable);
+                        claimAdapter.Fill(claimOutputTable);
+                        farmAdapter.Fill(farmOutputTable);
+                    } catch (Exception ex) {
+                        //MessageBox.Show("Oops, the database paused itself, please wait for it to start again.");
+                        //MarshDB.RestartDB();
+                        PlayerInfoTextBox.Text = "Whoops an error :P, restart and if the issue persists, give CataclysmicCPU this message " + ex.Message;
+                    } finally { sqlConnection.Close(); }
 
-                try {
-                    sqlConnection.Open();
-                    playerAdapter.Fill(playerOutputTable);
-                    rolesAdapater.Fill(rolesOutputTable);
-                    claimAdapter.Fill(claimOutputTable);
-                    farmAdapter.Fill(farmOutputTable);
-                } catch (Exception ex) {
-                    PlayerInfoTextBox.Text = "Whoops an error :P, give CataclysmicCPU this message " + ex.Message;
-                } finally { sqlConnection.Close(); }
                 if (playerOutputTable != null) {
                     FlatnetNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("InGameName");
                     DiscordNameDisplay.Text = playerOutputTable.Rows[0].Field<string>("DiscordName");
@@ -583,20 +585,20 @@ namespace MarshDatabase {
             }
         }
 
-        private void SwapToClaim(object sender, EventArgs e) { 
+        private void SwapToClaim(object sender, EventArgs e) {
             claimNameSwap = ClaimsSelect.SelectedCells[0].Value.ToString();
         }
 
         private void SwapToFarm(object sender, EventArgs e) {
             farmNameSwap = FarmSelect.SelectedCells[0].Value.ToString();
         }
-        string IPlayerView.GetFarmNameSwap() { 
+        string IPlayerView.GetFarmNameSwap() {
             return farmNameSwap;
         }
         string IPlayerView.GetClaimSwapName() {
             return claimNameSwap;
         }
-        void IPlayerView.SetFarmNameSwap(string s) { 
+        void IPlayerView.SetFarmNameSwap(string s) {
             farmNameSwap = s;
         }
         void IPlayerView.SetClaimNameSwap(string s) {

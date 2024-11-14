@@ -6,7 +6,6 @@ using static MarshDatabase.Program;
 
 namespace MarshDatabase {
     public partial class BootScreen : Form {
-
         public static MarshDB marshDB;
         Thread BootThread;
         string StatusTextBoxText = "Booting...";
@@ -21,7 +20,7 @@ namespace MarshDatabase {
             EasterEggLabel.BackColor = EasterEggLabel.Parent.BackColor;
 
             BootThread = new Thread(() => {
-                //Thread.Sleep(2000);
+                Thread.Sleep(2000);
                 EstablishDBConn();
                 marshDB = new MarshDB();
                 marshDB.ShowDialog();
@@ -30,6 +29,7 @@ namespace MarshDatabase {
             Application.Idle += ApplicationIdle;
             BootThread.Start();
         }
+
         public void EstablishDBConn() {
             StatusTextBoxText = "Connecting to Database...";
             while (true) {
@@ -47,10 +47,11 @@ namespace MarshDatabase {
         private void ApplicationIdle(object sender, EventArgs e) {
             BootStatusLabel.Text = StatusTextBoxText;
             if (BootStatusLabel.Text == "Connection Established.") {
-                this.Close();
                 BootThread.Join();
+                this.Close();
             }
         }
+
         private void BootStatusLabel_Click(object sender, EventArgs e) {
             EasterEggLabel.Text = "Congrats you found an easter egg! (ping lava and say cata sends his regards, dont tell him and share the easter egg)";
         }
