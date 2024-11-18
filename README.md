@@ -1,0 +1,1 @@
+This is simply the source code for the MarshDatabase system. It will work perfectly fine if you compile from this code, be careful with older versions, they will likley break due to the database strrcture changing. From beta on you should be fine however. 
