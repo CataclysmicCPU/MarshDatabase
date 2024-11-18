@@ -21,7 +21,7 @@ namespace MarshDatabase {
 
             byte[] testFont = Properties.Resources.RubikBubbles_Regular;
 
-            //stack overflows code
+
             var resourceArr = new[] { mainFont, testFont };
 
             foreach (var item in resourceArr) {
@@ -44,7 +44,8 @@ namespace MarshDatabase {
 
                 Marshal.FreeCoTaskMem(data);
             }
-            //my code again
+
+
             string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password=Teams123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=1;";
             sqlConnection = new SqlConnection(connectionString);
 
