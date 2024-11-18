@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading;
 using System.Windows.Forms;
 using static MarshDatabase.Program;
 
@@ -48,15 +47,15 @@ namespace MarshDatabase {
             for (int i = 0; i < claimSelectOutput.Rows.Count; i++) {
                 if (claimSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
                     ClaimSelect.Rows.Add(claimSelectOutput.Rows[i].Field<string>("ClaimName"),
-                    (claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 } else {
                     ClaimSelect.Rows.Add(
                     claimSelectOutput.Rows[i].Field<string>("ClaimName"),
-                    (claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (claimSelectOutput.Rows[i].Field<int>("SECornerY") + claimSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2 + ", " +
-                    (claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerY") + claimSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 }
             }
@@ -67,15 +66,15 @@ namespace MarshDatabase {
                 if (farmSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
                     FarmSelect.Rows.Add(
                      farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
-                    (farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 } else {
                     FarmSelect.Rows.Add(
                     farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
-                    (farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (farmSelectOutput.Rows[i].Field<int>("SECornerY") + farmSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2 + ", " +
-                    (farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerY") + farmSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 }
             }
@@ -121,15 +120,15 @@ namespace MarshDatabase {
             for (int i = 0; i < searchResults.Rows.Count; i++) {
                 if (searchResults.Rows[i].Field<int?>("SECornerY") == null) {
                     ClaimSelect.Rows.Add(searchResults.Rows[i].Field<string>("ClaimName"),
-                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 } else {
                     ClaimSelect.Rows.Add(
                     searchResults.Rows[i].Field<string>("ClaimName"),
-                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerY") + searchResults.Rows[i].Field<int>("NWCornerY")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerY") + searchResults.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 }
             }
@@ -155,15 +154,15 @@ namespace MarshDatabase {
                 if (searchResults.Rows[i].Field<int?>("SECornerY") == null) {
                     FarmSelect.Rows.Add(
                      searchResults.Rows[i].Field<string>("AutomatedItem"),
-                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 } else {
                     FarmSelect.Rows.Add(
                     searchResults.Rows[i].Field<string>("AutomatedItem"),
-                    (searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerY") + searchResults.Rows[i].Field<int>("NWCornerY")) / 2 + ", " +
-                    (searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2
+                    ((searchResults.Rows[i].Field<int>("SECornerX") + searchResults.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerY") + searchResults.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((searchResults.Rows[i].Field<int>("SECornerZ") + searchResults.Rows[i].Field<int>("NWCornerZ")) / 2)
                     );
                 }
             }

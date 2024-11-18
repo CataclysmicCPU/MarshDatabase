@@ -40,17 +40,17 @@ namespace MarshDatabase {
             flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             TextBox1 = new System.Windows.Forms.TextBox();
             TextBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(splitContainer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(splitContainer2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FarmImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.FarmImage).BeginInit();
             flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(splitContainer3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
             splitContainer3.Panel1.SuspendLayout();
             splitContainer3.Panel2.SuspendLayout();
             splitContainer3.SuspendLayout();
@@ -115,7 +115,7 @@ namespace MarshDatabase {
             // AutomatedItemTextBox
             // 
             this.AutomatedItemTextBox.AutoSize = true;
-            this.AutomatedItemTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutomatedItemTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.AutomatedItemTextBox.Location = new System.Drawing.Point(3, 0);
             this.AutomatedItemTextBox.Name = "AutomatedItemTextBox";
             this.AutomatedItemTextBox.Size = new System.Drawing.Size(500, 64);
@@ -127,13 +127,13 @@ namespace MarshDatabase {
             // InputItemsTextBox
             // 
             this.InputItemsTextBox.AutoSize = true;
-            this.InputItemsTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InputItemsTextBox.Font = new System.Drawing.Font(font.Families[0], 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.InputItemsTextBox.Location = new System.Drawing.Point(3, 32);
             this.InputItemsTextBox.Name = "InputItemsTextBox";
             this.InputItemsTextBox.Size = new System.Drawing.Size(300, 183);
             this.InputItemsTextBox.TabIndex = 1;
             this.InputItemsTextBox.Multiline = true;
-            this.InputItemsTextBox.WordWrap= true;
+            this.InputItemsTextBox.WordWrap = true;
             this.InputItemsTextBox.Text = "\r\nPlaceHolder\r\nPlaceHolder\r\nPlaceHolder";
             // 
             // splitContainer3
@@ -168,7 +168,7 @@ namespace MarshDatabase {
             // TextBox1
             // 
             TextBox1.AutoSize = true;
-            TextBox1.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TextBox1.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             TextBox1.Location = new System.Drawing.Point(3, 0);
             TextBox1.Name = "TextBox1";
             TextBox1.Size = new System.Drawing.Size(179, 25);
@@ -178,7 +178,7 @@ namespace MarshDatabase {
             // ShellClaimTextBox
             // 
             this.ShellClaimTextBox.AutoSize = true;
-            this.ShellClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShellClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ShellClaimTextBox.Location = new System.Drawing.Point(3, 25);
             this.ShellClaimTextBox.Name = "ShellClaimTextBox";
             this.ShellClaimTextBox.Size = new System.Drawing.Size(300, 38);
@@ -191,7 +191,7 @@ namespace MarshDatabase {
             // TextBox2
             // 
             TextBox2.AutoSize = true;
-            TextBox2.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TextBox2.Font = new System.Drawing.Font(font.Families[0], 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             TextBox2.Location = new System.Drawing.Point(3, 63);
             TextBox2.Name = "TextBox2";
             TextBox2.Size = new System.Drawing.Size(300, 25);
@@ -201,7 +201,7 @@ namespace MarshDatabase {
             // CreatorNameTextBox
             // 
             this.CreatorNameTextBox.AutoSize = true;
-            this.CreatorNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatorNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.CreatorNameTextBox.Location = new System.Drawing.Point(3, 88);
             this.CreatorNameTextBox.Name = "CreatorNameTextBox";
             this.CreatorNameTextBox.Size = new System.Drawing.Size(300, 75);
@@ -214,7 +214,7 @@ namespace MarshDatabase {
             // DatesDisplayTextBox
             // 
             this.DatesDisplayTextBox.AutoSize = true;
-            this.DatesDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatesDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.DatesDisplayTextBox.Location = new System.Drawing.Point(2, 0);
             this.DatesDisplayTextBox.Name = "DatesDisplayTextBox";
             this.DatesDisplayTextBox.Size = new System.Drawing.Size(350, 190);
@@ -226,7 +226,7 @@ namespace MarshDatabase {
             //FarmLocationTextBox
             //
             this.FarmLocationTextBox.AutoSize = true;
-            this.FarmLocationTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmLocationTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.FarmLocationTextBox.Location = new System.Drawing.Point(2, 0);
             this.FarmLocationTextBox.Name = "FarmLocationTextBox";
             this.FarmLocationTextBox.Size = new System.Drawing.Size(500, 190);
@@ -239,19 +239,19 @@ namespace MarshDatabase {
             this.Controls.Add(splitContainer1);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(splitContainer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(splitContainer2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FarmImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.FarmImage).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             splitContainer3.Panel1.ResumeLayout(false);
             splitContainer3.Panel2.ResumeLayout(false);
             splitContainer3.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(splitContainer3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
             splitContainer3.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel2.PerformLayout();
@@ -327,13 +327,13 @@ namespace MarshDatabase {
 
                 if (farmTable.Rows[0].Field<int?>("SECornerY") == null) {
                     FarmLocationTextBox.Text = "\r\nClaim Center:\r\n" +
-                    (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
-                    (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                    ((farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2);
                 } else {
                     FarmLocationTextBox.Text = "\r\nClaim Center:\r\n" +
-                    (farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
-                    (farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
-                    (farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                    ((farmTable.Rows[0].Field<int>("SECornerX") + farmTable.Rows[0].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmTable.Rows[0].Field<int>("SECornerY") + farmTable.Rows[0].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((farmTable.Rows[0].Field<int>("SECornerZ") + farmTable.Rows[0].Field<int>("NWCornerZ")) / 2);
                 }
                 ViewSwapper.SelectedIndex = 2;
                 BackgroundWorker backgroundWorker = new BackgroundWorker();
@@ -354,7 +354,7 @@ namespace MarshDatabase {
             try {
                 sqlConnection.Open();
                 dataAdapter.Fill(pictureTable);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 FarmLocationTextBox.Text = "Oops an error :P, please contace CataclysmicCPU and give him this message: " + ex.Message;
             } finally { sqlConnection.Close(); }
             try {

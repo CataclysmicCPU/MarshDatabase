@@ -430,6 +430,8 @@ namespace MarshDatabase {
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Marsh Database";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.MainDataTabSelect.ResumeLayout(false);
             this.SearchMembersSelect.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -459,8 +461,6 @@ namespace MarshDatabase {
             ((System.ComponentModel.ISupportInitialize)(this.FarmSelect)).EndInit();
             this.ResumeLayout(false);
             Application.Idle += ApplicationIdle;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
         }
 
         private void ApplicationIdle(object sender, EventArgs e) {
@@ -477,7 +477,9 @@ namespace MarshDatabase {
 
         private void SwapToPlayer() {
             foreach (DataGridViewRow row in PlayerSelect.Rows) {
-                if (row.Cells[0].Value.ToString() == FarmView.getPlayerSwapName() || row.Cells[0].Value.ToString() == ClaimView.getPlayerSwapName()) { PlayerSelect.Rows[row.Index].Selected = true; }
+                if (row.Cells[0].Value.ToString() == FarmView.getPlayerSwapName() || row.Cells[0].Value.ToString() == ClaimView.getPlayerSwapName()) { 
+                    PlayerSelect.Rows[row.Index].Selected = true; 
+                }
             }
             ViewSwapper.SelectedIndex = 0;
             FarmView.setPlayerSwapName(null);
@@ -490,9 +492,9 @@ namespace MarshDatabase {
                     ClaimSelect.Rows[row.Index].Selected = true;
                 }
             }
+            ViewSwapper.SelectedIndex = 1;
             FarmView.setClaimSwapName(null);
             PlayerView.SetClaimNameSwap(null);
-            ViewSwapper.SelectedIndex = 1;
         }
 
         private void SwapToFarm() {
@@ -501,8 +503,8 @@ namespace MarshDatabase {
                     FarmSelect.Rows[row.Index].Selected = true;
                 }
             }
-            this.PlayerView.SetFarmNameSwap(null);
             ViewSwapper.SelectedIndex = 2;
+            this.PlayerView.SetFarmNameSwap(null);
         }
     }
 }

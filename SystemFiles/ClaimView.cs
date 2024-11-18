@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
-using static MarshDatabase.Program;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using static MarshDatabase.Program;
 
 namespace MarshDatabase {
 
@@ -46,7 +45,7 @@ namespace MarshDatabase {
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Font = new System.Drawing.Font(font.Families[0], 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel1.Font = new System.Drawing.Font(font.Families[0], 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -73,7 +72,7 @@ namespace MarshDatabase {
             // ClaimNameTextBox
             // 
             this.TextBox2.AutoSize = true;
-            this.TextBox2.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox2.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.TextBox2.Location = new System.Drawing.Point(3, 0);
             this.TextBox2.Name = "ClaimNameTextBox";
             this.TextBox2.Size = new System.Drawing.Size(123, 22);
@@ -83,7 +82,7 @@ namespace MarshDatabase {
             // ClaimNameTextBox
             // 
             this.ClaimNameTextBox.AutoSize = true;
-            this.ClaimNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimNameTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimNameTextBox.Location = new System.Drawing.Point(3, 22);
             this.ClaimNameTextBox.Name = "TextBox2";
             this.ClaimNameTextBox.Size = new System.Drawing.Size(300, 35);
@@ -93,7 +92,7 @@ namespace MarshDatabase {
             // TextBox1
             // 
             this.TextBox1.AutoSize = true;
-            this.TextBox1.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox1.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.TextBox1.Location = new System.Drawing.Point(3, 60);
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.Size = new System.Drawing.Size(136, 25);
@@ -105,7 +104,7 @@ namespace MarshDatabase {
             // ClaimOwnerTextBox
             // 
             this.ClaimOwnerTextBox.AutoSize = true;
-            this.ClaimOwnerTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimOwnerTextBox.Font = new System.Drawing.Font(font.Families[0], 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimOwnerTextBox.Location = new System.Drawing.Point(3, 0);
             this.ClaimOwnerTextBox.Name = "ClaimOwnerTextBox";
             this.ClaimOwnerTextBox.Size = new System.Drawing.Size(300, 25);
@@ -116,7 +115,7 @@ namespace MarshDatabase {
             // TextBox4
             // 
             this.TextBox4.AutoSize = true;
-            this.TextBox4.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox4.Font = new System.Drawing.Font(font.Families[0], 12.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.TextBox4.Location = new System.Drawing.Point(3, 142);
             this.TextBox4.Name = "TextBox4";
             this.TextBox4.Size = new System.Drawing.Size(102, 24);
@@ -128,7 +127,7 @@ namespace MarshDatabase {
             // ClaimContentsTextBox
             // 
             this.ClaimContentsTextBox.AutoSize = true;
-            this.ClaimContentsTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimContentsTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimContentsTextBox.Location = new System.Drawing.Point(3, 186);
             this.ClaimContentsTextBox.Name = "ClaimContentsTextBox";
             this.ClaimContentsTextBox.Size = new System.Drawing.Size(500, 100);
@@ -140,7 +139,7 @@ namespace MarshDatabase {
             // ClaimDatesTextBox
             // 
             this.ClaimDatesTextBox.AutoSize = true;
-            this.ClaimDatesTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimDatesTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimDatesTextBox.Location = new System.Drawing.Point(3, 215);
             this.ClaimDatesTextBox.Name = "ClaimDatesTextBox";
             this.ClaimDatesTextBox.Size = new System.Drawing.Size(300, 30);
@@ -152,7 +151,7 @@ namespace MarshDatabase {
             // MainClaimTextBox
             // 
             this.MainClaimTextBox.AutoSize = true;
-            this.MainClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainClaimTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.MainClaimTextBox.Location = new System.Drawing.Point(3, 389);
             this.MainClaimTextBox.Name = "MainClaimTextBox";
             this.MainClaimTextBox.Size = new System.Drawing.Size(204, 87);
@@ -164,7 +163,7 @@ namespace MarshDatabase {
             // TextBox3
             // 
             this.ClaimSizeTextBox.AutoSize = true;
-            this.ClaimSizeTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimSizeTextBox.Font = new System.Drawing.Font(font.Families[0], 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimSizeTextBox.Location = new System.Drawing.Point(3, 476);
             this.ClaimSizeTextBox.Name = "TextBox3";
             this.ClaimSizeTextBox.Size = new System.Drawing.Size(200, 87);
@@ -187,7 +186,7 @@ namespace MarshDatabase {
             // CordsDisplayTextBox
             // 
             this.CordsDisplayTextBox.AutoSize = true;
-            this.CordsDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CordsDisplayTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.CordsDisplayTextBox.Location = new System.Drawing.Point(3, 0);
             this.CordsDisplayTextBox.Name = "CordsDisplayTextBox";
             this.CordsDisplayTextBox.Size = new System.Drawing.Size(500, 177);
@@ -201,14 +200,14 @@ namespace MarshDatabase {
             // ClaimCenterTextBox
             // 
             this.ClaimCenterTextBox.AutoSize = true;
-            this.ClaimCenterTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClaimCenterTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.ClaimCenterTextBox.Location = new System.Drawing.Point(3, 195);
             this.ClaimCenterTextBox.Name = "ClaimCenterTextBox";
             this.ClaimCenterTextBox.Size = new System.Drawing.Size(500, 117);
             this.ClaimCenterTextBox.TabIndex = 3;
             this.ClaimCenterTextBox.Multiline = true;
             this.ClaimCenterTextBox.AcceptsReturn = true;
-            this.ClaimCenterTextBox.Text = "\r\nClaim Center: \r\n-9999,-999,-9999\r\n";;
+            this.ClaimCenterTextBox.Text = "\r\nClaim Center: \r\n-9999,-999,-9999\r\n"; ;
 
             this.ClientSize = new System.Drawing.Size(893, 586);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -275,7 +274,7 @@ namespace MarshDatabase {
                 ClaimContentsTextBox.Text = ClaimOutputTable.Rows[0].Field<string>("Contents");
                 ClaimOwnerTextBox.Text = ClaimOutputTable.Rows[0].Field<string>("InGameName");
                 ClaimSizeTextBox.Text = "\r\nSize: \r\n" + ClaimOutputTable.Rows[0].Field<int>("Size") + " blocks";
-                MainClaimTextBox.Text =  "\r\nIn Main Claim? \r\n" + ClaimOutputTable.Rows[0].Field<bool>("InMainClaim");
+                MainClaimTextBox.Text = "\r\nIn Main Claim? \r\n" + ClaimOutputTable.Rows[0].Field<bool>("InMainClaim");
                 if (ClaimOutputTable.Rows[0].Field<DateTime?>("DateDeleted") == null) {
                     ClaimDatesTextBox.Text = "\nDate Created: " + ClaimOutputTable.Rows[0].Field<DateTime>("DateCreated").ToString("M/d/yyyy");
                 } else {
@@ -311,13 +310,13 @@ namespace MarshDatabase {
                 }
                 if (ClaimOutputTable.Rows[0].Field<int?>("SECornerY") == null) {
                     ClaimCenterTextBox.Text = "\nClaim Center: " +
-                    (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
-                    (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                    ((ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2);
                 } else {
                     ClaimCenterTextBox.Text = "\nClaim Center: " +
-                    (ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2 + ", " +
-                    (ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ClaimOutputTable.Rows[0].Field<int>("NWCornerY")) / 2 + ", " +
-                    (ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2;
+                    ((ClaimOutputTable.Rows[0].Field<int>("SECornerX") + ClaimOutputTable.Rows[0].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((ClaimOutputTable.Rows[0].Field<int>("SECornerY") + ClaimOutputTable.Rows[0].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((ClaimOutputTable.Rows[0].Field<int>("SECornerZ") + ClaimOutputTable.Rows[0].Field<int>("NWCornerZ")) / 2);
                 }
                 ViewSwapper.SelectedIndex = 1;
             }
@@ -331,7 +330,5 @@ namespace MarshDatabase {
         void SwapToPlayer(object sender, EventArgs e) {
             playerSwapName = ClaimOwnerTextBox.Text;
         }
-        [DllImport("User32.dll")]
-        static extern Boolean HideCaret(IntPtr hWnd);
     }
 }

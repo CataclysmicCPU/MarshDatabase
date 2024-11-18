@@ -3,7 +3,6 @@ using System;
 using System.Data.SqlClient;
 using System.Drawing.Text;
 using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -20,15 +19,15 @@ namespace MarshDatabase {
 
             byte[] mainFont = Properties.Resources.Rubik_VariableFont_wght;
 
-            byte[] testFont = Properties.Resources.RubikBubbles_Regular; 
+            byte[] testFont = Properties.Resources.RubikBubbles_Regular;
 
             //stack overflows code
-            var resourceArr = new [] { mainFont, testFont };
+            var resourceArr = new[] { mainFont, testFont };
 
             foreach (var item in resourceArr) {
                 Stream fontStream = new MemoryStream(item);
 
-                System.IntPtr data = Marshal.AllocCoTaskMem((int)fontStream.Length);
+                IntPtr data = Marshal.AllocCoTaskMem((int)fontStream.Length);
 
                 byte[] fontdata = new byte[fontStream.Length];
 
@@ -49,8 +48,23 @@ namespace MarshDatabase {
             string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password=Teams123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=1;";
             sqlConnection = new SqlConnection(connectionString);
 
-            BootScreen = new BootScreen();
-            Application.Run(BootScreen);
+            bool retry = true;
+            int retryCount = 0;
+
+            while(retry) {
+                try {
+                    retry = false;
+                    BootScreen = new BootScreen();
+                    Application.Run(BootScreen);
+                } catch {
+                    if (retryCount == 10) { break; }
+                    retryCount++;
+                    retry = true;
+                }
+            }
+            if (retryCount == 10) {
+                MessageBox.Show("There was an error starting the application, please check it is not already running and try again. If this persists then contact CataclysmicCPU.");
+            }
         }
         [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
