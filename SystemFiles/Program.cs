@@ -63,7 +63,7 @@ namespace MarshDatabase {
                 }
             }
             if (retryCount == 10) {
-                MessageBox.Show("There was an error starting the application, please check it is not already running and try again. If this persists then contact CataclysmicCPU.");
+                MessageBox.Show("There was an error starting the application, please check it is not already running and that it is not stuck and try again. If this persists then contact CataclysmicCPU.");
             }
         }
         [DllImport("user32.dll")]
