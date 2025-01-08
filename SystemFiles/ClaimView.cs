@@ -253,8 +253,6 @@ namespace MarshDatabase {
                 DataGridViewRow selectedRow = ClaimSelect.Rows[selectedRowIndex];
                 string claimNameSelected = Convert.ToString(selectedRow.Cells["ClaimName"].Value);
 
-
-
                 string claimQuery = $"SELECT InGameName, ClaimName, Size, Contents, DateCreated, DateDeleted, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ, InMainClaim FROM dbo.Claim INNER JOIN [Member] ON OwnerMemberKey=[Member].[MemberKey] WHERE ClaimName = '{claimNameSelected}'";
                 SqlCommand claimCmd = new SqlCommand(claimQuery, sqlConnection);
                 SqlDataAdapter claimDataAdapter = new SqlDataAdapter(claimCmd);

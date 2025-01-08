@@ -1,4 +1,5 @@
 ﻿
+using DarkModeForms;
 using System;
 using System.Data.SqlClient;
 using System.Drawing.Text;
@@ -11,6 +12,8 @@ namespace MarshDatabase {
         public static SqlConnection sqlConnection = null;
         public static BootScreen BootScreen = null;
         public static PrivateFontCollection font = new PrivateFontCollection();
+        public static string GlobalEvents = "";
+
         [STAThread]
         static void Main() {
             SetProcessDPIAware();
@@ -46,26 +49,28 @@ namespace MarshDatabase {
             }
 
 
-            string connectionString = "Server=tcp:marsh.database.windows.net,1433;Initial Catalog=Marsh;Persist Security Info=False;User ID=CataclysmicCPU;Password=Teams123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=1;";
+            string connectionString = "Server=tcp:marsh.database.windows.net,1433;Database=Marsh;Uid=CataclysmicCPU;Pwd=Teams123!;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=60;";
             sqlConnection = new SqlConnection(connectionString);
 
-            bool retry = true;
-            int retryCount = 0;
+            //bool retry = true;
+            //int retryCount = 0;
 
-            while(retry) {
-                try {
-                    retry = false;
-                    BootScreen = new BootScreen();
-                    Application.Run(BootScreen);
-                } catch {
-                    if (retryCount == 10) { break; }
-                    retryCount++;
-                    retry = true;
-                }
-            }
-            if (retryCount == 10) {
-                MessageBox.Show("There was an error starting the application, please check it is not already running and that it is not stuck and try again. If this persists then contact CataclysmicCPU.");
-            }
+            //while (retry) {
+            //    try {
+            //        retry = false;
+            //        BootScreen = new BootScreen();
+            //        Application.Run(BootScreen);
+            //    } catch {
+            //        if (retryCount == 10) { break; }
+            //        retryCount++;
+            //        retry = true;
+            //    }
+            //}
+            //if (retryCount == 10) {
+            //    MessageBox.Show("There was an error starting the application, please check it is not already running and that it is not stuck and try again. If this persists then contact CataclysmicCPU.");
+            //}
+            BootScreen = new BootScreen();
+            Application.Run(BootScreen);
         }
         [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();

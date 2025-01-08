@@ -7,80 +7,19 @@ using static MarshDatabase.Program;
 
 namespace MarshDatabase {
     public partial class MarshDB : Form {
+        private string inGameNameSelected;
+        private string farmNameSelected;
+        private string claimNameSelected;
         public MarshDB() {
             InitializeComponent();
             DarkModeCS DM = new DarkModeCS(this);
             DM.ApplyTheme(true);
+            RefreshSelectionTables();
 
-
-
-            string ShowPlayerQuery = "SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member";
-            string ShowClaimsQuery = "SELECT ClaimName, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim";
-            string ShowFarmsQuery = "SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey";
-
-            SqlCommand showNameCmd = new SqlCommand(ShowPlayerQuery, sqlConnection);
-            SqlCommand showClaimsCmd = new SqlCommand(ShowClaimsQuery, sqlConnection);
-            SqlCommand showFarmCmd = new SqlCommand(ShowFarmsQuery, sqlConnection);
-
-            SqlDataAdapter getFarmAdapater = new SqlDataAdapter(showFarmCmd);
-            SqlDataAdapter getNameAdapter = new SqlDataAdapter(showNameCmd);
-            SqlDataAdapter getClaimAdapter = new SqlDataAdapter(showClaimsCmd);
-
-            DataTable nameSelectOutput = new DataTable();
-            DataTable claimSelectOutput = new DataTable();
-            DataTable farmSelectOutput = new DataTable();
-
-            try {
-                sqlConnection.Open();
-                getNameAdapter.Fill(nameSelectOutput);
-                getClaimAdapter.Fill(claimSelectOutput);
-                getFarmAdapater.Fill(farmSelectOutput);
-            } catch (Exception e) {
-
-            } finally { sqlConnection.Close(); }
-
-            PlayerSelect.DataSource = nameSelectOutput;
-
-            ClaimSelect.Columns.Add("ClaimName", "Claim Name");
-            ClaimSelect.Columns.Add("ClaimLocation", "Cords");
-
-            for (int i = 0; i < claimSelectOutput.Rows.Count; i++) {
-                if (claimSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
-                    ClaimSelect.Rows.Add(claimSelectOutput.Rows[i].Field<string>("ClaimName"),
-                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
-                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
-                    );
-                } else {
-                    ClaimSelect.Rows.Add(
-                    claimSelectOutput.Rows[i].Field<string>("ClaimName"),
-                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
-                    ((claimSelectOutput.Rows[i].Field<int>("SECornerY") + claimSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
-                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
-                    );
-                }
-            }
-            FarmSelect.Columns.Add("AutomatedItem", "Automated Item");
-            FarmSelect.Columns.Add("Location", "Cords");
-
-            for (int i = 0; i < farmSelectOutput.Rows.Count; i++) {
-                if (farmSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
-                    FarmSelect.Rows.Add(
-                     farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
-                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
-                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
-                    );
-                } else {
-                    FarmSelect.Rows.Add(
-                    farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
-                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
-                    ((farmSelectOutput.Rows[i].Field<int>("SECornerY") + farmSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
-                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
-                    );
-                }
-            }
+            this.ShowDialog();
         }
 
-        private void ShowPlayerData(object sender, EventArgs e) {
+        private void PlayerSearchChanged(object sender, EventArgs e) {
 
             string NameSearchQuery = $"SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member WHERE InGameName LIKE '%{PlayerSearch.Text}%' OR DiscordName LIKE '%{PlayerSearch.Text}%'";
 
@@ -134,7 +73,7 @@ namespace MarshDatabase {
             }
         }
 
-        private void SearchFarmChanged(object sender, EventArgs e) {
+        private void FarmSearchChanged(object sender, EventArgs e) {
             FarmSelect.Rows.Clear();
             string FarmSearchQuery = $"SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey WHERE AutomatedItem LIKE '%{FarmSearchBox.Text}%'";
             SqlCommand sqlCommand = new SqlCommand(FarmSearchQuery, sqlConnection);
@@ -166,6 +105,97 @@ namespace MarshDatabase {
                     );
                 }
             }
+        }
+
+        public void RefreshSelectionTables() {
+            try {
+                int selectedRowIndex = PlayerSelect.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = PlayerSelect.Rows[selectedRowIndex];
+                inGameNameSelected = Convert.ToString(selectedRow.Cells["Flatnet Name"].Value);
+            } catch {}
+            try {
+                int selectedRowIndex = FarmSelect.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = FarmSelect.Rows[FarmSelect.SelectedCells[0].RowIndex];
+                farmNameSelected = Convert.ToString(selectedRow.Cells["AutomatedItem"].Value);
+            } catch {}
+            try {
+                int selectedRowIndex = ClaimSelect.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = ClaimSelect.Rows[selectedRowIndex];
+                string claimNameSelected = Convert.ToString(selectedRow.Cells["ClaimName"].Value);
+            } catch {}
+
+            string ShowPlayerQuery = "SELECT InGameName AS [Flatnet Name], DiscordName AS [Discord Name] FROM dbo.Member";
+            string ShowClaimsQuery = "SELECT ClaimName, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Claim";
+            string ShowFarmsQuery = "SELECT AutomatedItem, SECornerX, SECornerY, SECornerZ, NWCornerX, NWCornerY, NWCornerZ FROM dbo.Farm INNER JOIN dbo.Claim ON ShellClaimKey=ClaimKey";
+
+            SqlCommand showNameCmd = new SqlCommand(ShowPlayerQuery, sqlConnection);
+            SqlCommand showClaimsCmd = new SqlCommand(ShowClaimsQuery, sqlConnection);
+            SqlCommand showFarmCmd = new SqlCommand(ShowFarmsQuery, sqlConnection);
+
+            SqlDataAdapter getFarmAdapater = new SqlDataAdapter(showFarmCmd);
+            SqlDataAdapter getNameAdapter = new SqlDataAdapter(showNameCmd);
+            SqlDataAdapter getClaimAdapter = new SqlDataAdapter(showClaimsCmd);
+
+            DataTable nameSelectOutput = new DataTable();
+            DataTable claimSelectOutput = new DataTable();
+            DataTable farmSelectOutput = new DataTable();
+
+            try {
+                sqlConnection.Open();
+                getNameAdapter.Fill(nameSelectOutput);
+                getClaimAdapter.Fill(claimSelectOutput);
+                getFarmAdapater.Fill(farmSelectOutput);
+            } catch (Exception e) {
+
+            } finally { sqlConnection.Close(); }
+
+            PlayerSelect.Columns.Clear();
+            ClaimSelect.Columns.Clear();
+            FarmSelect.Columns.Clear();
+
+            PlayerSelect.DataSource = nameSelectOutput;
+
+            ClaimSelect.Columns.Add("ClaimName", "Claim Name");
+            ClaimSelect.Columns.Add("ClaimLocation", "Cords");
+
+            for (int i = 0; i < claimSelectOutput.Rows.Count; i++) {
+                if (claimSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
+                    ClaimSelect.Rows.Add(claimSelectOutput.Rows[i].Field<string>("ClaimName"),
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
+                    );
+                } else {
+                    ClaimSelect.Rows.Add(
+                    claimSelectOutput.Rows[i].Field<string>("ClaimName"),
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerX") + claimSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerY") + claimSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((claimSelectOutput.Rows[i].Field<int>("SECornerZ") + claimSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
+                    );
+                }
+            }
+            FarmSelect.Columns.Add("AutomatedItem", "Automated Item");
+            FarmSelect.Columns.Add("Location", "Cords");
+
+            for (int i = 0; i < farmSelectOutput.Rows.Count; i++) {
+                if (farmSelectOutput.Rows[i].Field<int?>("SECornerY") == null) {
+                    FarmSelect.Rows.Add(
+                     farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
+                    );
+                } else {
+                    FarmSelect.Rows.Add(
+                    farmSelectOutput.Rows[i].Field<string>("AutomatedItem"),
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerX") + farmSelectOutput.Rows[i].Field<int>("NWCornerX")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerY") + farmSelectOutput.Rows[i].Field<int>("NWCornerY")) / 2) + ", " +
+                    ((farmSelectOutput.Rows[i].Field<int>("SECornerZ") + farmSelectOutput.Rows[i].Field<int>("NWCornerZ")) / 2)
+                    );
+                }
+            }
+        }
+
+        public void Login(object sender, EventArgs e) {
+            _ = new CouncilLogin(sender as Button);
         }
 
         public void ClearSelction(object sender, EventArgs e) {

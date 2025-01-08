@@ -22,13 +22,13 @@ namespace MarshDatabase {
 
             Application.Idle += ApplicationIdle;
 
-            BootThread = Task.Run(() => {
-                Thread.Sleep(2000);
+            BootThread = new Task<int>(() => {
+                //Thread.Sleep(2000);
                 EstablishDBConn();
                 marshDB = new MarshDB();
-                marshDB.ShowDialog();
-                return 1;
+                return 0;
             });
+            BootThread.Start();
         }
 
         public void EstablishDBConn() {

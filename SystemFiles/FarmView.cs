@@ -355,7 +355,8 @@ namespace MarshDatabase {
                 sqlConnection.Open();
                 dataAdapter.Fill(pictureTable);
             } catch (Exception ex) {
-                FarmLocationTextBox.Text = "Oops an error :P, please contace CataclysmicCPU and give him this message: " + ex.Message;
+                //MessageBox.Show("Oops, the database paused itself, please wait for it to start again.");
+                //MarshDB.RestartDB();
             } finally { sqlConnection.Close(); }
             try {
                 var imageData = pictureTable.Rows[0].Field<byte[]>("Picture");

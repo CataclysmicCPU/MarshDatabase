@@ -155,7 +155,7 @@ namespace MarshDatabase {
             this.QuitDateTextBox.Font = new System.Drawing.Font(font.Families[0], 15.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             this.QuitDateTextBox.Location = new System.Drawing.Point(3, 136);
             this.QuitDateTextBox.Name = "QuitDateTextBox";
-            this.QuitDateTextBox.Size = new System.Drawing.Size(200, 25);
+            this.QuitDateTextBox.Size = new System.Drawing.Size(300, 25);
             this.QuitDateTextBox.TabIndex = 2;
             this.QuitDateTextBox.Text = "Quit Date:";
             // 
@@ -477,7 +477,7 @@ namespace MarshDatabase {
         public string inGameNameSelected;
 
         void IPlayerView.ShowPlayerData(object sender, EventArgs e) {
-            if (NameSelect.SelectedCells.Count > 0) {
+            if (NameSelect.SelectedCells.Count == 2) {
                 RolesTable.Rows.Clear();
                 ClaimsSelect.Rows.Clear();
                 FarmSelect.Rows.Clear();
@@ -539,7 +539,9 @@ namespace MarshDatabase {
                 for (int i = 0; i < rolesOutputTable.Columns.Count; i++) {
                     if (!(rolesOutputTable.Rows[0][i] == null)) {
                         if (rolesOutputTable.Columns[i].ColumnName == "CouncilRole") {
-                            RolesTable.Rows.Add("Council Role: " + rolesOutputTable.Rows[0].Field<string>("CouncilRole").ToString());
+                            if (rolesOutputTable.Rows[0].Field<string>("CouncilRole")?.ToString() != null) {
+                                RolesTable.Rows.Add("Council Role: " + rolesOutputTable.Rows[0].Field<string>("CouncilRole").ToString());
+                            }
                         } else if (rolesOutputTable.Rows[0][i].ToString() == "True") {
                             RolesTable.Rows.Add(rolesOutputTable.Columns[i].ColumnName);
                         }
@@ -635,4 +637,3 @@ namespace MarshDatabase {
 
     }
 }
-

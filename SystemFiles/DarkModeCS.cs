@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static MarshDatabase.Program;
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -352,7 +353,7 @@ namespace DarkModeForms {
                 if ((int)control.GetType().GetProperty("TabIndex").GetValue(control) != 999) {
                     control.GetType().GetProperty("BorderStyle")?.SetValue(control, BorderStyle.None);
                     control.GetType().GetProperty("ReadOnly")?.SetValue(control, true);
-                    control.GetType().GetProperty("BackColor")?.SetValue(control, OScolors.SurfaceDark);
+                    control.GetType().GetProperty("BackColor")?.SetValue(control, control.Parent.BackColor);
                     control.GetType().GetProperty("TabStop")?.SetValue(control, false);
 
                 }
@@ -460,6 +461,7 @@ namespace DarkModeForms {
             }
             if (control is CheckBox) {
                 control.GetType().GetProperty("BackColor")?.SetValue(control, control.Parent.BackColor);
+                control.GetType().GetProperty("Font")?.SetValue(control, new Font(font.Families[0], 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0));
                 control.ForeColor = control.Enabled ? OScolors.TextActive : OScolors.TextInactive;
                 control.Paint += (object sender, PaintEventArgs e) => {
                     if (control.Enabled == false && this.IsDarkMode) {
@@ -473,6 +475,7 @@ namespace DarkModeForms {
             }
             if (control is RadioButton) {
                 control.GetType().GetProperty("BackColor")?.SetValue(control, control.Parent.BackColor);
+                control.GetType().GetProperty("Font")?.SetValue(control, new Font(font.Families[0], 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0));
                 control.ForeColor = control.Enabled ? OScolors.TextActive : OScolors.TextInactive;
                 control.Paint += (object sender, PaintEventArgs e) => {
                     if (control.Enabled == false && this.IsDarkMode) {

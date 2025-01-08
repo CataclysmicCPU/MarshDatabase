@@ -36,6 +36,10 @@ namespace MarshDatabase {
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TextBox FarmSearchBox;
         private System.Windows.Forms.DataGridView FarmSelect;
+        private Button CreatePlayerButton;
+        private Button EditPlayerButton;
+        private SplitContainer splitContainer4;
+        private SplitContainer splitContainer5;
         private IFarmView FarmView;
         private IPlayerView PlayerView;
         private IClaimView ClaimView;
@@ -67,6 +71,10 @@ namespace MarshDatabase {
             this.FarmSearchBox = new System.Windows.Forms.TextBox();
             this.FarmSelect = new System.Windows.Forms.DataGridView();
             this.ViewSwapper = new System.Windows.Forms.TabControl();
+            this.CreatePlayerButton = new System.Windows.Forms.Button();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.EditPlayerButton = new System.Windows.Forms.Button();
             this.FarmView = new FarmView(FarmSelect, ViewSwapper);
             this.ClaimView = new ClaimView(ClaimSelect, ViewSwapper);
             this.PlayerView = new PlayerView(PlayerSelect, ViewSwapper);
@@ -135,7 +143,7 @@ namespace MarshDatabase {
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.PlayerSelect);
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
             this.splitContainer2.Size = new System.Drawing.Size(117, 545);
             this.splitContainer2.SplitterDistance = 26;
             this.splitContainer2.TabIndex = 1;
@@ -149,7 +157,49 @@ namespace MarshDatabase {
             this.PlayerSearch.TabIndex = 999;
             this.PlayerSearch.BorderStyle = BorderStyle.FixedSingle;
             this.PlayerSearch.Font = new System.Drawing.Font(font.Families[0], 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerSearch.TextChanged += new System.EventHandler(this.ShowPlayerData);
+            this.PlayerSearch.TextChanged += new System.EventHandler(this.PlayerSearchChanged);
+            //
+            //CreatePlayerButton
+            //
+            this.CreatePlayerButton.Dock = DockStyle.Fill;
+            this.CreatePlayerButton.AutoSize = true;
+            this.CreatePlayerButton.Name = "CreatePlayerButton";
+            this.CreatePlayerButton.Size = new Size(150, 23);
+            this.CreatePlayerButton.Padding = new Padding(4);
+            this.CreatePlayerButton.Font = new Font(font.Families[0], 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatePlayerButton.Text = "Create Player";
+            this.CreatePlayerButton.Click += Login;
+            //
+            //EditPlayerButton
+            //
+            this.EditPlayerButton.Dock = DockStyle.Fill;
+            this.EditPlayerButton.AutoSize = true;
+            this.EditPlayerButton.Name = "EditPlayerButton";
+            this.EditPlayerButton.Size = new Size(150, 23);
+            this.EditPlayerButton.Padding = new Padding(4);
+            this.EditPlayerButton.Font = new Font(font.Families[0], 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditPlayerButton.Text = "Edit Selected Player";
+            this.EditPlayerButton.Click += Login;
+            //
+            //splitContainer4
+            //
+            this.splitContainer4.Dock = DockStyle.Fill;
+            this.splitContainer4.Orientation = Orientation.Horizontal;
+            this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
+
+            this.splitContainer4.Panel1.Controls.Add(this.PlayerSelect);
+            this.splitContainer4.Panel2MinSize = 0;
+            this.splitContainer4.SplitterDistance = 200;
+            this.splitContainer4.IsSplitterFixed = true;
+            this.splitContainer4.Panel2.Size = new Size(150, 21);
+            //
+            //splitContainer5
+            //
+            this.splitContainer5.Dock = DockStyle.Fill;
+            this.splitContainer5.IsSplitterFixed = true;
+            this.splitContainer5.SplitterDistance = splitContainer5.Width/2;
+            this.splitContainer5.Panel1.Controls.Add(this.CreatePlayerButton);
+            this.splitContainer5.Panel2.Controls.Add(this.EditPlayerButton);
             // 
             // NameSelect
             // 
@@ -196,7 +246,7 @@ namespace MarshDatabase {
             this.PlayerSelect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PlayerSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PlayerSelect.ShowEditingIcon = false;
-            this.PlayerSelect.Size = new System.Drawing.Size(117, 515);
+            this.PlayerSelect.Size = new System.Drawing.Size(117, 999);
             this.PlayerSelect.ReadOnly = true;
             this.PlayerSelect.SelectionChanged += PlayerView.ShowPlayerData;
             // 
@@ -226,14 +276,14 @@ namespace MarshDatabase {
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ClaimSelect);
             this.splitContainer1.Size = new System.Drawing.Size(117, 545);
-            this.splitContainer1.SplitterDistance = 25;
+            this.splitContainer1.SplitterDistance = 20;
             // 
             // ClaimsSearchBox
             // 
             this.ClaimsSearchBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ClaimsSearchBox.Location = new System.Drawing.Point(0, 0);
             this.ClaimsSearchBox.Name = "ClaimsSearchBox";
-            this.ClaimsSearchBox.Size = new System.Drawing.Size(117, 30);
+            this.ClaimsSearchBox.Size = new System.Drawing.Size(117, 20);
             this.ClaimsSearchBox.TabIndex = 999;
             this.ClaimsSearchBox.BorderStyle = BorderStyle.FixedSingle;
             this.ClaimsSearchBox.Font = new Font(font.Families[0], 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -368,7 +418,7 @@ namespace MarshDatabase {
             this.FarmSearchBox.TabIndex = 999;
             this.FarmSearchBox.BorderStyle = BorderStyle.FixedSingle;
             this.FarmSearchBox.Font = new System.Drawing.Font(font.Families[0], 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FarmSearchBox.TextChanged += new EventHandler(this.SearchFarmChanged);
+            this.FarmSearchBox.TextChanged += new EventHandler(this.FarmSearchChanged);
             // 
             // FarmSelect
             // 
@@ -459,8 +509,8 @@ namespace MarshDatabase {
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FarmSelect)).EndInit();
-            this.ResumeLayout(false);
             Application.Idle += ApplicationIdle;
+            this.ResumeLayout(false);
         }
 
         private void ApplicationIdle(object sender, EventArgs e) {
@@ -472,6 +522,10 @@ namespace MarshDatabase {
             }
             if (PlayerView.GetFarmNameSwap() != null) {
                 SwapToFarm();
+            }
+            if (GlobalEvents == "RefreshSelectionTables") { 
+                RefreshSelectionTables();
+                GlobalEvents = "";
             }
         }
 
